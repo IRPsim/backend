@@ -1,0 +1,107 @@
+{
+  "input" : {
+    "D_Cl_tot" : {
+      "dependencies" : [ ],
+      "processing" : [ ],
+      "overview" : false,
+      "description" : "Please enter the total demand for chlorine",
+      "domain" : {
+        ">=" : 0
+      },
+      "unit" : "tCl"
+    },
+    "par_D_Cl" : {
+      "dependencies" : [ "set_ii" ],
+      "processing" : [ ],
+      "overview" : false,
+      "description" : "Please enter the demand for chlorine",
+      "domain" : {
+        ">=" : 0
+      },
+      "unit" : "tCl"
+    },
+    "par_prc_el" : {
+      "dependencies" : [ "set_ii" ],
+      "processing" : [ ],
+      "overview" : false,
+      "description" : "day ahead spot price",
+      "domain" : {
+        ">=" : 0
+      },
+      "unit" : "EUR/MWh"
+    },
+    "sca_RD" : {
+      "dependencies" : [ ],
+      "processing" : [ ],
+      "overview" : false,
+      "description" : "Please enter the Ramp down of electrolyzer",
+      "domain" : {
+        ">" : 0
+      },
+      "unit" : "MW/h"
+    },
+    "sca_RU" : {
+      "dependencies" : [ ],
+      "processing" : [ ],
+      "overview" : false,
+      "description" : "Please enter the maximal Ramp up of the electrolyzer",
+      "domain" : {
+        ">" : 0
+      },
+      "unit" : "MW/h"
+    },
+    "sca_S_eff" : {
+      "dependencies" : [ ],
+      "processing" : [ ],
+      "overview" : false,
+      "description" : "Please enter the conversion efficiency of the electrolyser",
+      "domain" : {
+        ">" : 0
+      },
+      "unit" : "MW/ECU"
+    },
+    "sca_S_max" : {
+      "dependencies" : [ ],
+      "processing" : [ ],
+      "overview" : false,
+      "description" : "Please enter the maximal power of the electrolyzer",
+      "domain" : {
+        ">" : 0
+      },
+      "unit" : "MW"
+    },
+    "sca_S_min" : {
+      "dependencies" : [ ],
+      "processing" : [ ],
+      "overview" : false,
+      "description" : "Please enter the minimal power of the electrolyzer",
+      "domain" : {
+        ">" : 0
+      },
+      "unit" : "MW"
+    }
+  },
+  "output" : {
+    "power" : {
+      "dependencies" : [ "set_ii" ],
+      "processing" : [ ],
+      "overview" : true,
+      "description" : "Power of the electrolyzer at every timestep",
+      "domain" : { },
+      "unit" : "MW"
+    },
+    "total_cost" : {
+      "dependencies" : [ ],
+      "processing" : [ ],
+      "overview" : true,
+      "description" : "total cost over all timesteps",
+      "domain" : { },
+      "unit" : "EUR"
+    }
+  },
+  "sets" : {
+    "set_t" : [ "set_ii", "set_ii_0" ],
+    "set_ii_0" : [ ],
+    "set_ii" : [ "set_ii_0" ]
+  }
+}

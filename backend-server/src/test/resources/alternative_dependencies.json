@@ -1,0 +1,40 @@
+{
+  "input": {},
+  "output" : {
+    "Par1" : {
+      "dependencies" : [ "set_ii" ],
+      "processing" : [ ],
+      "overview" : false,
+      "description" : "Einlesen Modulfläche PV-Anlage in Abhängigkeit der Kundengruppen und der Technologien",
+      "domain" : {
+        ">=" : 0
+      },
+      "unit" : "m2"
+    },
+    "Par2" : {
+      "dependencies" : [ "set_ii", "Set1" ],
+      "processing" : [ ],
+      "overview" : false,
+      "description" : "Einlesen Modulfläche PV-Anlage in Abhängigkeit der Kundengruppen und der Technologien",
+      "domain" : {
+        ">=" : 0
+      },
+      "unit" : "m2"
+    },
+    "Par3": {
+      "dependencies": ["set_ii", "SetA", "SetB"],
+      "processing" : [ ],
+      "overview" : false,
+      "description" : "Einlesen Modulfläche PV-Anlage in Abhängigkeit der Kundengruppen und der Technologien",
+      "domain" : {
+        ">=" : 0
+      },
+      "unit" : "m2"
+
+    }
+    },
+  "sets": {
+    "set_pss" : [ ],
+    "set_tech_DES_ES" : [ "set_tech_DES", "set_pss" ]
+  }
+}

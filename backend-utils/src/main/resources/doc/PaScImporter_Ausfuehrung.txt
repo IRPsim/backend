@@ -1,0 +1,69 @@
+== Beschreibung PaScImporter ==
+
+Der PaScImporter ermöglicht das Importieren von Teilszenarien (partials scenarios = PaSc).
+
+Die Eingabe kann in Form einzelner Dateipfade und/oder Ordnerpfade erfolgen, diese Pfade sind als Argumente nach -p anzugeben. Es werden nur Dateien mit 
+Endung .excel anerkannt die NICHT mit "irpsim parameterliste" anfangen.
+- Zugelassenes Eingabeformat:
+ + Exceldateien
+ + Jedes Arbeitsblatt beinhaltet Werte für einen Parameter, d.h. unabhängig von der zusätzlichen Angabe eines IRMkey wird der Name des Arbeitsblatts als 
+   Parametername gesetzt und sollte also in der Parameterliste der Modelldefinition gegeben sein und in der Teilszenariendefinition unter LEME.
+ + Arbeitsblätter, die nicht auf "par_" beginnen werden ignoriert.
+ + Die erste Spalte eines Arbeitsblattes definiert den Datentyp und ggb. die Bezeichnung der Daten der Zeile:
+	~ Ein Datum signalisiert, dass in dieser Zeile ein Datenpunkt je Zeitreihe steht. Danach dürfen ausschließlich Zahlen folgen. Diese Zahlen werden der 
+	  Reihenfolge nach eingelesen und später entsprechend des definierten Intervalls ausgerollt. Der tatsächliche Wert des Datums bleibt unberücksichtigt!
+	~ Ein String definiert ein Metadatum mit entsprechender Bezeichnung, wichtige Daten sind: Marktszenario (sonst wird die Zeitreihe ignoriert!), 
+	  Bezugsjahr (default ist das Startjahr), Zeitintervall (default Viertelstundenwert), IRM_Key (wird mit dem Parameternamen abgeglichen), 
+	  "Faktor p.a." (wird zum extrapolieren der Daten in andere Jahre verwendet, default 1)
+	~ Ignoriert werden leere Zeilen und zusätzlich "Spalte1", "Metadaten", "Zeitreihen" und "Datum". Alle anderen Strings werden als weitere Metadatenbezeichungen interpretiert
+	~ Zahlen dürfen NICHT VORKOMMEN in der ersten Spalte
+Dabei können gleiche Parameter für unterschiedliche Szenarien und/oder Jahre auch in mehreren Dateien definiert sein.
+
+Der Importer kann automatisiert die Eingaben gegen die Parameterliste der Teilszenariendefinition für LEME abgleichen. Dafür muss diese Datei mit als Eingabe angegeben werden:
+a) entweder implizit als Datei oder Ordner unter -p, dann muss der Dateiname mit "irpsim parameterliste" anfangen (Groß/Kleinschreibung egal). Sind in den mitgegebenen 
+   Dateien mehrere entsprechende Exceldateien vorhanden, dann wird davon nicht-deterministisch eine ausgewählt und genutzt, der Rest ignoriert.
+b) oder explizit als Argument nach -ps, diese Datei wird definitiv genutzt
+
+Die Klasse PaScImporter dient dabei als Einstiegspunkt, sie besteht nur aus statischen Methoden, mit denen die Eingabe verarbeitet wird, einschließlich der main.
+
+Die verarbeiteten Eingaben werden dann an den PaScImporterManager weitergeleitet, dieser ruft die verschiedenen Werkzeuge auf um 
+	1) die Quelldateien einzulesen 
+	2) die Daten zu überprüfen
+	3) die Daten zu erweitern
+	4) die Daten auszugeben
+	
+Ein Teil der Ausgabe erfolgt bereits in Phase 3), da die zusätzlichen Daten zu groß für den Javaheap wären und deshalb in Dateien geschrieben werden. 
+Die Dateipfade dieser Dateien werden an Phase 4) mit übergeben, sodass sie für Importskripte o.ä. verwendet werden können.
+
+Zusätzlich kann der Manager die Daten um fehlende ergänzen.
+
+Phase 1) PaScFilesReader
+- erstellt die grundlegende Datenstruktur, in die die Eingabedaten eingefügt werden, erstellt den zentralen Fehlerkontainer
+- erstellt einzelne PaScFileReader für je eine Exceldatei
+- überprüft danach ob Parameter mit Szenario und Jahr mehrfach definiert wurden
+
+PaScFileReader
+- Liest die Exceldatei ein und gibt die Bearbeitung der einzelnen Arbeitsblätter an je einen erstellten PaScSheetReader weiter.
+- Ordnet die Daten in die grundlegende Datenstruktur ein
+- Erweitert die Zeitreihen anhand ihrer Zeitintervalldefinitionen zu Viertelstundenzeitreihen
+
+PaScSheetReader
+- Liest die Daten aus dem Arbeitsblatt in Zeitreihen mit Metadaten ein.
+
+Phase 2) PaScChecker
+Ist keine Teilszenariendefinitionsdatei angegeben entfällt Phase 2.
+- überprüft, dass alle in der Teilszenariendefinitionsdatei angegebenen Parameter auch in den Daten gegeben sind
+- erstellt die Liste nicht vorhandener Parameter um das nachträgliche Auffüllen dieser zu ermöglichen
+Anhand der zurückgegebenen Liste wird dann jedes Marktszenario um die fehlenden Parameter ergänzt
+
+Phase 3) PaScExtrapolator
+- startend beim ersten gefundenen Jahr werden alle weiteren Jahre bis zum Endjahr ausgerollt
+- dabei werden die Daten des Jahres mit dem jeweiligen Faktor multipliziert übertragen, außer es sind bereits Daten im nächsten Jahr vorhanden.
+- jeweils danach werden die Daten in die entsprechende csv des Szenarios geschrieben (vie CSVWriter)
+- löscht die Anfangsjahre 
+
+Phase 4) SQLWriter
+- schreibt den import dump für SQL
+- erzeugt zwei Dateien (zusätzlich zu den vom CSVWriter in Phase 3) erzeugten Dateien): den Dump mithilfe dessen alle Daten importiert werden und einen 
+  Dump zum erzeugen der Tabellen der spezifischen Metadaten
+- erstellt die Referenzen für die Zeitreihen und fügt diese in die Daten ein  

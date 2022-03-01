@@ -1,0 +1,26 @@
+[ {
+  "id" : 1,
+  "name" : "IRPopt",
+  "type" : "GDX",
+  "description" : "Optimierungsmodell für Geschäftsmodelle",
+  "version" : "d11cbcfd8a5ba89dce39d8fd93f4c4fd1c334140\n Datum: 20.10.2021 13:55"
+}, {
+  "id" : 3,
+  "name" : "IRPact",
+  "type" : "Java",
+  "description" : "Agentensimulation für Diffusionsprozesse",
+  "version" : "c21210dbd2927850825208894d6b107a468e853a\n Datum: 24.09.2021 14:06"
+}, {
+  "id" : 4,
+  "name" : "Veriflex",
+  "type" : "GDX",
+  "description" : "Example model",
+  "version" : "c48c6448ad9079cb7505f6432600882d7cb7a360\n Datum: 03.09.2020 14:08"
+}, {
+  "id" : 5,
+  "name" : "opt-act",
+  "type" : "COMBINED",
+  "description" : "Combination of IRPopt and IRPact",
+  "version" : "d11cbcfd8a5ba89dce39d8fd93f4c4fd1c334140\n Datum: 20.10.2021 13:55 - c21210dbd2927850825208894d6b107a468e853a\n Datum: 24.09.2021 14:06",
+  "submodels" : [ 1, 3 ]
+} ]

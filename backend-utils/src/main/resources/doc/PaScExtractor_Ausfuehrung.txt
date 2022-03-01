@@ -1,0 +1,9 @@
+== Beschreibung PaScExtractor ==
+
+Mit dem PaSc-Extraktor ist es möglich, ein oder mehrere Szenarien gleichzeitig in ihre Teilszenarien aufzuteilen. Da Kundengruppen konstant bleiben, werden diese nur einmal erstellt.
+
+Die Teilszenarien-Daten werden anschließend in dump.sql-Dateien für jede Szenarien-Aufteilung zusammengefasst. Diese können durch 
+
+find . -name "dump.sql" -exec sh -c 'cat {} >> dumpall.sql' \; 
+
+zusammengefasst werden. Durch die Ausführung von dumpall.sql auf einem Server, auf dem die Ursprungsszenarien existieren (und somit auch die ursprünglichen Zeitreihen) können anschließend die Szenarien importiert werden. Es sollte dabei keine Kundengruppenkonfiguration vorhanden sein, weil lt. Anforderungen immer nur eine Kundengruppen-Definition je Jahr vorhanden sein darf.

@@ -1,0 +1,67 @@
+<assembly>
+    <id>production</id>
+    <!-- Specifies that our binary distribution is a dir, not a zip package -->
+    <formats>
+        <format>dir</format>
+    </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>    
+    <!-- Adds the dependencies of our application to the lib directory -->
+    <dependencySets>
+        <dependencySet>
+            <!--
+                Project artifact is not copied under library directory since
+                it is added to the root directory of the zip package.
+            -->
+            <useProjectArtifact>false</useProjectArtifact>
+            <outputDirectory>lib</outputDirectory>
+            <unpack>false</unpack>
+        </dependencySet>
+    </dependencySets>
+ 
+    <fileSets>
+        <!--
+            Adds startup scripts to the root directory of zip package. The startup
+            scripts are copied from the src/main/scripts directory.
+        -->
+        <fileSet>
+            <directory>${project.build.scriptSourceDirectory}</directory>
+            <outputDirectory></outputDirectory>
+            <includes>
+                <include>startup.*</include>
+                <include>startDockerTest.*</include>
+                <include>startEnvironmentManually.*</include>
+                <include>Dockerfile</include>
+            </includes>
+        </fileSet>
+        <!--
+            Adds the jar file of our example application to the root directory
+            of the created zip package.
+        -->
+        <fileSet>
+            <outputDirectory></outputDirectory>
+            <directory>${basedir}/../backend-gams/target/</directory>
+            <includes>
+              <include>backend-gams-0.2-SNAPSHOT.jar</include>
+            </includes>
+          </fileSet>
+          <fileSet>
+            <outputDirectory>gams</outputDirectory>
+            <directory>${basedir}/../backend-gams/src/main/resources/gams/</directory>
+          </fileSet>
+        
+        <fileSet>
+            <directory>${project.build.directory}/classes</directory>
+            <outputDirectory>classes</outputDirectory>
+        </fileSet>
+        <!-- native libaries -->     
+        <fileSet>
+            <directory>${nativelib.directory}</directory>
+            <outputDirectory>nativelibs</outputDirectory>
+            <includes>
+                <include>*.so</include>
+		<include>*.dll</include>
+		<include>*.dylib</include>
+            </includes>
+        </fileSet>      
+    </fileSets>
+</assembly>

@@ -1,0 +1,3 @@
+[submodule "backend-server/gams/model"]
+	path = backend-utils/gams/model
+	url = gitolite3@irpsim.uni-leipzig.de:model.git

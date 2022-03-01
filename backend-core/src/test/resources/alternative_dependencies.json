@@ -1,0 +1,53 @@
+{"input":
+ {"par_A_DES_PV":
+  {"dependencies":["set_tech_DES_PV"],
+   "processing":[],
+   "overview":false},
+   "par_E_SS_PHS_respos_schedule":
+  {"dependencies":["set_ii", "set_tech_SS_PHS"],
+   "processing":[],
+   "overview":false},
+   "par_F_DES_E_DSESdirect":
+  {"dependencies":["set_ii", "set_side_cust", "set_tech_DES_ES"],
+   "processing":[],
+   "overview":false},
+   "par_C_pss_relativeStatus":
+  {"dependencies" : [ "set_pss" ],
+   "processing":[],
+   "overview":false}
+ },
+ "output":
+ {"par_out_C_MS_E":
+  {"dependencies":["set_ii"],
+   "processing":["sum"],
+   "overview":true},
+  "par_out_I_DES_EB_flexibility":
+  {"dependencies":["set_ii"],
+   "processing":["sum"],
+   "overview":true},
+  "par_out_E_DES_EB_resneg":
+  {"dependencies":["set_ii","set_p_DS","set_r"],
+   "processing":["sum"],
+   "overview":true},
+  "par_out_E_DS_ES_charge":
+  {"dependencies":["set_ii","set_p_DS","set_s"],
+   "processing":["sum"],
+   "overview":true},
+  "par_out_E_NS_delta_excess":
+  {"dependencies":["set_ii"],
+   "processing":["sum"],
+   "overview":true},
+  "par_E_out_DES_load_self":
+  {"dependencies":["set_ii","set_p_DS"],
+   "processing":["sum"],
+   "overview":true},
+  "par_E_out_DS_load_self":
+  {"dependencies":["set_ii","set_p_DS"],
+   "processing":["sum"],
+   "overview":true},
+ },
+ "sets": {
+  "set_pss" : [ ],
+  "set_tech_DES_ES" : [ "set_tech_DES", "set_pss" ]
+ }
+}

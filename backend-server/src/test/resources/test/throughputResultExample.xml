@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<throughputResult>
+	<overview>
+		<scenario>Basismodell_test.json</scenario>
+		<bestThroughputRatio>
+			<numberOfParallelProcesses> 5 </numberOfParallelProcesses>
+			<avgThroughputPerHour>3.1</avgThroughputPerHour>
+			<rsd>0.064</rsd>	
+		</bestThroughputRatio>
+	</overview>
+
+	<runs>
+		<run>
+			<numberOfParallelProcesses> 1 </numberOfParallelProcesses>
+			<avgMinutesPerProcess>40.2</avgMinutesPerProcess>
+			<avgThroughputPerHour>1.5</avgThroughputPerHour>
+			<sd>0.1</sd>
+			<rsd>0.066</rsd>
+			<numberOfSequentialProcesses> 8 </numberOfSequentialProcesses>
+			<rawData>
+				<start>1356994800000</start>
+				<end>1356999800000</end>
+				<end>1357004800000</end>
+				<end>1357009800000</end>
+				<end>1356999800000</end>
+				<end>1356999800000</end>
+				<end>1356999800000</end>
+				<end>1356999800000</end>
+				<end>1356999800000</end>
+			</rawData>
+		</run>
+		<run>
+			<numberOfParallelProcesses>2</numberOfParallelProcesses>
+			<avgMinutesPerProcess>40.2</avgMinutesPerProcess>
+			<avgThroughputPerHour>2.9</avgThroughputPerHour>
+			<sd>0.2</sd>
+			<rsd>0.066</rsd>
+			<numberOfSequentialProcesses> 46 </numberOfSequentialProcesses>
+			<rawData>
+				<start>1356994800000</start>
+				<end>1356999800000</end>
+				<end>1357004800000</end>
+				<end>1357009800000</end>
+				<end>1356999800000</end>
+				<end>1356999800000</end>
+				<end>1356999800000</end>
+				<end>1356999800000</end>
+				<end>1356999800000</end>
+				<end>1356999800000</end>
+				<end>1356999800000</end>
+				<end>1356999800000</end>
+				<end>1356999800000</end>
+			</rawData>
+		</run>
+	</runs>
+</throughputResult>

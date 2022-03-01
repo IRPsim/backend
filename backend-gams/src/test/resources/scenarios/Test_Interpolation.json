@@ -1,0 +1,159 @@
+{"postprocessing": null, "years": [{
+    "config": {
+        "modell": "Basismodell",
+        "savelength": 96,
+        "simulationlength": 672,
+        "timestep": 0.25,
+        "year": 2015
+    },
+    "postprocessing": {
+        "scalars": {
+            "first_scalar": {
+                "sum": 10.0,
+                "max": 6.0,
+                "min": 4.0
+            },
+            "second_scalar": {
+                "avg": 6.5
+            }
+        },
+        "sets": {
+            "first_set": {
+                "first_element": {
+                    "first_parameter": {
+                        "max": 6.0
+                    },
+                    "second_parameter": {
+                        "avg": 6.5
+                    }
+                }
+            },
+            "second_set": {
+                "first_element": {
+                    "first_parameter": {
+                        "min": 4.0
+                    }
+                },
+                "second_element": {
+                    "first_parameter": {
+                        "sum": 10.0
+                    }
+                }
+            }
+        },
+        "tables": {
+            "first_table": {
+                "first_dependent": {
+                    "second_dependent": {
+                        "avg": 6.5
+                    }
+                }
+            }
+        }
+    },
+    "scalars": {},
+    "sets": {
+        "set_p_DS": {
+            "p1": {
+                "par_E_out_DES_load_self": [12, 12, 12, 12],
+                "par_E_out_DS_load_self": [12, 12, 12, 12]
+            }
+        }
+    },
+    "tables": {
+        "par_out_E_DES_EB_resneg": {
+            "p1": {
+                "tech_EB1": [12, 12, 12, 12],
+                "tech_EB2": [12, 12, 12, 12]
+            }
+        },
+        "par_out_E_DS_ES_charge": {
+            "p1": {
+                "tech_ES1": [12, 12, 12, 12]
+            }
+        }
+    },
+    "timeseries": {
+        "par_out_C_MS_E": [12, 12, 12, 12],
+        "par_out_E_NS_delta_excess": [12, 12, 12, 12]
+    }
+},{
+    "config": {
+        "modell": "Basismodell",
+        "savelength": 96,
+        "simulationlength": 672,
+        "timestep": 0.25,
+        "year": 2020
+    },
+    "postprocessing": {
+        "scalars": {
+            "first_scalar": {
+                "sum": 30.0,
+                "max": 16.0,
+                "min": 14.0
+            },
+            "second_scalar": {
+                "avg": 19.0
+            }
+        },
+        "sets": {
+            "first_set": {
+                "first_element": {
+                    "first_parameter": {
+                        "max": 16.0
+                    },
+                    "second_parameter": {
+                        "avg": 19.0
+                    }
+                }
+            },
+            "second_set": {
+                "first_element": {
+                    "first_parameter": {
+                        "min": 14.0
+                    }
+                },
+                "second_element": {
+                    "first_parameter": {
+                        "sum": 30.0
+                    }
+                }
+            }
+        },
+        "tables": {
+            "first_table": {
+                "first_dependent": {
+                    "second_dependent": {
+                        "avg": 19.0
+                    }
+                }
+            }
+        }
+    },
+    "scalars": {},
+    "sets": {
+        "set_p_DS": {
+            "p1": {
+                "par_E_out_DES_load_self": [12, 12, 12, 12],
+                "par_E_out_DS_load_self": [12, 12, 12, 12]
+            }
+        }
+    },
+    "tables": {
+        "par_out_E_DES_EB_resneg": {
+            "p1": {
+                "tech_EB1": [12, 12, 12, 12],
+                "tech_EB2": [12, 12, 12, 12]
+            }
+        },
+        "par_out_E_DS_ES_charge": {
+            "p1": {
+                "tech_ES1": [12, 12, 12, 12]
+            }
+        }
+    },
+    "timeseries": {
+        "par_out_C_MS_E": [12, 12, 12, 12],
+        "par_out_E_NS_delta_excess": [12, 12, 12, 12]
+    }
+}]}

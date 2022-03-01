@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:element name="throughputResult">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="overview"/>
+                <xs:element ref="runs"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="overview">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="scenario"/>
+                <xs:element ref="bestThroughputRatio"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="scenario" type="xs:NCName"/>
+    <xs:element name="bestThroughputRatio">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="numberOfParallelProcesses"/>
+                <xs:element ref="avgThroughputPerHour"/>
+                <xs:element ref="rsd"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="runs">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="run"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="run">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="numberOfParallelProcesses"/>
+                <xs:element ref="avgMinutesPerProcess"/>
+                <xs:element ref="avgThroughputPerHour"/>
+                <xs:element ref="sd"/>
+                <xs:element ref="rsd"/>
+                <xs:element ref="numberOfSequentialProcesses"/>
+                <xs:element ref="rawData"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="avgMinutesPerProcess" type="xs:decimal"/>
+    <xs:element name="sd" type="xs:decimal"/>
+    <xs:element name="numberOfSequentialProcesses" type="xs:integer"/>
+    <xs:element name="rawData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="start"/>
+                <xs:element maxOccurs="unbounded" ref="end"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="start" type="xs:integer"/>
+    <xs:element name="end" type="xs:integer"/>
+    <xs:element name="numberOfParallelProcesses" type="xs:integer"/>
+    <xs:element name="avgThroughputPerHour" type="xs:decimal"/>
+    <xs:element name="rsd" type="xs:decimal"/>
+</xs:schema>

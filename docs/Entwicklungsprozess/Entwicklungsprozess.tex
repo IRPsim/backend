@@ -1,0 +1,86 @@
+\documentclass[10pt]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+
+\usepackage{paralist}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\usetikzlibrary{calc}
+\usetikzlibrary{fit,positioning}
+\usetikzlibrary{backgrounds}
+
+\tikzstyle{block} = [rectangle, draw, text width=4em, text centered, rounded corners, minimum height=2em]
+\tikzstyle{entity} = [rectangle, draw, text centered]
+\tikzstyle{line} = [draw, rounded corners, -latex']
+
+\author{David Georg Reichelt}
+\title{Entwicklungsprozess in IRPsim}
+
+\begin{document}
+
+% \maketitle
+
+\section{Entwicklungsprozess}
+
+Im Entwicklungsprozess von IRPsim sind folgende Systeme notwendig:
+
+\begin{itemize}
+  \item Ein Produktivsystem, auf dem ein stabiler, getesteter Stand läuft, das regelmäßig verfügbar ist. Das Produktivsystem soll dabei auf dem Server in Basel laufen und bei Bedarf mit einer stabilen, aktuellen Version aktualisiert werden können. 
+  \item Ein System für langfristige fachliche Tests, in dem weitestgehend reife Modellversionen auf Fehler getestet werden. Das System soll stabil laufen und Daten sollen weitestgehend verfügbar bleiben.
+  \item Ein System für kurzfristige fachliche Tests, in dem neueste Modellversionen auf Fehler getestet werden. Front- und Backend des Systems sollen stabil sein, das Modell selbst kann Fehler enthalten.
+  \item Ein technisches IT-Testsystem, auf dem die Zusammenarbeit von neuen Backend- und Frontend-Features getestet wird. Das Modell-Testsystem soll die Überprüfung lang laufender Optimierungen ermöglichen. Es soll deshalb ständig verfügbar sein und Daten persistent behalten.
+\end{itemize}
+
+Bei der Umsetzung dieser Anforderungen sollen Docker-Image, laufendes System und branch so benannt sein, dass aus der Benennung die Zusammengehörigkeit hervorgeht. 
+
+Um diese Anforderungen zu erfüllen, sollen die drei branches master, develop, model-master und model-develop im backend eingerichtet werden. Zu allen branches bis auf den master-branch soll ein Jenkins-Job existieren, der das korrespondierende System erstellt. Im Frontend sollen aus dem frontend-master- und dem frontend-develop-Job heraus die Docker-Container für alle Systeme erstellt werden, wobei frontend-develop aus dem develop-branch gebaut wird und alle anderen Systeme aus dem master-branch im frontend-master Job erstellt werden.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[remember picture, activity/.style={line width = 1pt, draw, shape = rectangle, rounded corners}]
+ 
+  \node[activity] (master) at (1, 0){master};
+  \node[activity, below = 0.5cm of master]  (model-master) {model-master};
+  \node[activity, below = 0.5cm of model-master] (model-develop) {model-develop};
+  \node[activity, left = 0.5cm of model-develop] (develop) {develop};
+  \node[activity] at (4.5, -1) (Model) {
+       \begin{tikzpicture}
+       \node at (0,0) (repomodel) {Repository model};
+       \node[activity, below = 0.5cm of repomodel] (modell-master) {master};
+       \node[activity, below = 0.5cm of modell-master] (modell-develop) {develop};
+       \path [line] (modell-develop) -- (modell-master);
+       \end{tikzpicture}
+   };
+   
+   \node[activity] at (-4.5, -1) (Client) {
+       \begin{tikzpicture}
+       \node at (0,0) (repoclient) {Repository ui-client};
+       \node[activity, below = 0.5cm of repoclient] (client-master) {master};
+       \node[activity, below = 0.5cm of client-master] (client-develop) {develop};
+       \path [line] (client-develop) -- (client-master);
+       \end{tikzpicture}
+   };
+   
+   \path [line] (client-develop) -- (develop);
+   \path [line] (client-master) -- (model-master);
+  
+  \path [line] (model-master) -- (master);
+  \path [line] (develop) -- (model-master);
+  \path [line] (develop) -- (model-master);
+  \path [line] (develop) -- (model-develop);
+  \path [line] (modell-develop) -- (model-develop);
+  \path [line] (modell-master) -- (model-master);
+  
+
+  \end{tikzpicture}
+\caption{Ablauf des Entwicklungsprozesses - die in der Mitte dargestellten Branches sind gleichzeitig Backend-Branches und Backend-Systeme, die wie dargestellt mit Artefakten aus dem Modell und aus dem ui-client betrieben werden.}
+\label{fig:branches}
+\end{figure}
+
+Im Modell-Repo wird ein master- und ein develop-branch eingerichtet. Jeder commit auf Master führt, über den model-master-Buildjob und den model-master branch im backend, zu einer Aktualisierung des Systems und somit zu einem Abbruch laufender Jobs. Deshalb sollen alle sonstigen Neuerungen, bei denen kein Neustart des Backends erwünscht ist, auf den develop-branch gepusht werden. Dieser wird durch den model-develop-Buildjob auf Konsistenz geprüft und anschließend über den branch model-develop im model-develop bereitgestellt. Dieser Ablauf ist in \ref{fig:branches} dargestellt.
+
+
+
+
+\end{document}

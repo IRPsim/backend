@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Set status to debug, to see log4j2's initial setup. -->
+<Configuration status="info">
+
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout
+				pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36}:%line -  %msg%n" />
+		</Console>
+	</Appenders>
+
+	<Loggers>
+
+		<Logger name="org.hibernate" level="warn" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="de.unileipzig.irpsim.utils.ReadXLSXModel" level="debug" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Root level="debug">
+			<AppenderRef ref="Console" />
+		</Root>
+
+	</Loggers>
+
+</Configuration>
