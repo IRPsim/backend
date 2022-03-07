@@ -11,12 +11,6 @@
   "description" : "Agentensimulation für Diffusionsprozesse",
   "version" : "c21210dbd2927850825208894d6b107a468e853a\n Datum: 24.09.2021 14:06"
 }, {
-  "id" : 4,
-  "name" : "Veriflex",
-  "type" : "GDX",
-  "description" : "Example model",
-  "version" : "c48c6448ad9079cb7505f6432600882d7cb7a360\n Datum: 03.09.2020 14:08"
-}, {
   "id" : 5,
   "name" : "opt-act",
   "type" : "COMBINED",
