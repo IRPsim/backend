@@ -18,5 +18,5 @@ jobs:
       with:
         java-version: ${{ matrix.java }}
     - name: Build Backend
-      run: ./mvnw -B package -DskipTests -pl :backend-server -am
+      run: ./mvnw -B package -DskipTests -pl ":backend-server,:backend-gams" -am
 
