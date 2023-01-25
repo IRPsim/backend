@@ -17,6 +17,8 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: ${{ matrix.java }}
+    - name: Install GAMS
+      run: ./getGams.sh
     - name: Build Backend
       run: ./mvnw -B package -DskipTests -pl ":backend-server,:backend-gams" -am
 
