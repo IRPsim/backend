@@ -1,0 +1,22 @@
+name: Build IRPsim
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  build:
+    strategy:
+        matrix:
+          os: [ubuntu-latest] 
+          java: [ 11, 17 ]
+        fail-fast: false
+    runs-on: ${{ matrix.os }}
+    name: Java ${{ matrix.java }} OS ${{ matrix.os }} sample
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK ${{ matrix.java }}
+      uses: actions/setup-java@v1
+      with:
+        java-version: ${{ matrix.java }}
+    - name: Build Backend
+      run: ./mvnw -B package -DskipTests -pl :backend-server -am
+
