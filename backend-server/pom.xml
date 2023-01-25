@@ -13,7 +13,7 @@
 	<description>Integriert die UI mit der Simulationsschicht und unterstützt die Datenhaltung</description>
 
 	<scm>
-		<connection>scm:git:git://localhost/${basedir}</connection>
+		<connection>scm:git:git:github.com/IRPsim/backend</connection>
 	</scm>
 
 	<build>
