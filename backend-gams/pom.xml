@@ -160,7 +160,6 @@
 		</plugins>
 	</build>
 
-	<!-- You light save gams here, if you posess a copy of it's jar -->
 	<repositories>
 		<repository>
 			<id>lib-repository</id>
