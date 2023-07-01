@@ -1,5 +1,5 @@
-PARAMETER par_cashFlow_timestep_sum_help1;
-PARAMETER par_cashFlow_timestep_sum_help2;
+*PARAMETER par_cashFlow_timestep_sum_help1;
+*PARAMETER par_cashFlow_timestep_sum_help2;
 
 *Testsets zum Begrenzen der Schleifendurchläufe
 set_optsteps(set_iii)=No;

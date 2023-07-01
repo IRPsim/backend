@@ -3,7 +3,7 @@
   "name" : "IRPopt",
   "type" : "GDX",
   "description" : "Optimierungsmodell für Geschäftsmodelle",
-  "version" : "d11cbcfd8a5ba89dce39d8fd93f4c4fd1c334140\n Datum: 20.10.2021 13:55"
+  "version" : "1a4684a4c5bdc80fc2d53e10a086484c675cd3b8\n Datum: 25.04.2023 14:14"
 }, {
   "id" : 3,
   "name" : "IRPact",
@@ -15,6 +15,6 @@
   "name" : "opt-act",
   "type" : "COMBINED",
   "description" : "Combination of IRPopt and IRPact",
-  "version" : "d11cbcfd8a5ba89dce39d8fd93f4c4fd1c334140\n Datum: 20.10.2021 13:55 - c21210dbd2927850825208894d6b107a468e853a\n Datum: 24.09.2021 14:06",
+  "version" : "1a4684a4c5bdc80fc2d53e10a086484c675cd3b8\n Datum: 25.04.2023 14:14 - c21210dbd2927850825208894d6b107a468e853a\n Datum: 24.09.2021 14:06",
   "submodels" : [ 1, 3 ]
 } ]

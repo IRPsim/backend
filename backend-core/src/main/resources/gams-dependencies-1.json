@@ -5681,7 +5681,7 @@
       "description" : "Bitte geben Sie hier die Stromkennzahl der Kraft-Wärme-Kopplungsanlage an",
       "domain" : {
         ">" : 0,
-        "<=" : 1
+        "<=" : 10
       },
       "unit" : ""
     },
@@ -6269,6 +6269,16 @@
     },
     "par_X_B_MS_BMarket_DES_CHP_energyLink" : {
       "dependencies" : [ "set_market_MS_B", "set_tech_DES_CHP" ],
+      "processing" : [ ],
+      "overview" : false,
+      "description" : "Bitte legen Sie hier fest, ob eine Energieverbindung vom Biomassemarkt zu folgendem Prosumstorer (Technologie, Last, Netz, Markt etc.) bestehen soll",
+      "domain" : {
+        "values" : [ 0, 1 ]
+      },
+      "unit" : "Unbekannt"
+    },
+    "par_X_B_MS_BMarket_DES_NGB_energyLink" : {
+      "dependencies" : [ "set_market_MS_B", "set_tech_DES_NGB" ],
       "processing" : [ ],
       "overview" : false,
       "description" : "Bitte legen Sie hier fest, ob eine Energieverbindung vom Biomassemarkt zu folgendem Prosumstorer (Technologie, Last, Netz, Markt etc.) bestehen soll",
@@ -7493,6 +7503,36 @@
       },
       "unit" : ""
     },
+    "par_X_E_SS_PV_DES_ES_energyLink" : {
+      "dependencies" : [ "set_tech_SS_PV", "set_tech_DES_ES" ],
+      "processing" : [ ],
+      "overview" : false,
+      "description" : "Bitte legen Sie hier fest, ob eine Energieverbindung von der Windkraftanlage zu folgendem Prosumstorer (Technologie, Last, Netz, Markt etc.) bestehen soll",
+      "domain" : {
+        "values" : [ 0, 1 ]
+      },
+      "unit" : "Unbekannt"
+    },
+    "par_X_E_SS_PV_DES_EY_energyLink" : {
+      "dependencies" : [ "set_tech_SS_PV", "set_tech_DES_EY" ],
+      "processing" : [ ],
+      "overview" : false,
+      "description" : "Bitte legen Sie hier fest, ob eine Energieverbindung von der PV-Anlage zu folgendem Prosumstorer (Technologie, Last, Netz, Markt etc.) bestehen soll",
+      "domain" : {
+        "values" : [ 0, 1 ]
+      },
+      "unit" : "Unbekannt"
+    },
+    "par_X_E_SS_PV_DS_ELoad_energyLink" : {
+      "dependencies" : [ "set_tech_SS_PV", "set_load_DS_E" ],
+      "processing" : [ ],
+      "overview" : false,
+      "description" : "Bitte legen Sie hier fest, ob eine Energieverbindung von der Windkraftanlage zu folgendem Prosumstorer (Technologie, Last, Netz, Markt etc.) bestehen soll",
+      "domain" : {
+        "values" : [ 0, 1 ]
+      },
+      "unit" : "Unbekannt"
+    },
     "par_X_E_SS_PV_MS_EMarket_energyLink" : {
       "dependencies" : [ "set_tech_SS_PV", "set_market_MS_E" ],
       "processing" : [ ],
@@ -7705,6 +7745,36 @@
         "values" : [ 0, 1 ]
       },
       "unit" : ""
+    },
+    "par_X_E_SS_WT_DES_ES_energyLink" : {
+      "dependencies" : [ "set_tech_SS_WT", "set_tech_DES_ES" ],
+      "processing" : [ ],
+      "overview" : false,
+      "description" : "Bitte legen Sie hier fest, ob eine Energieverbindung von der Windkraftanlage zu folgendem Prosumstorer (Technologie, Last, Netz, Markt etc.) bestehen soll",
+      "domain" : {
+        "values" : [ 0, 1 ]
+      },
+      "unit" : "Unbekannt"
+    },
+    "par_X_E_SS_WT_DES_EY_energyLink" : {
+      "dependencies" : [ "set_tech_SS_WT", "set_tech_DES_EY" ],
+      "processing" : [ ],
+      "overview" : false,
+      "description" : "Bitte legen Sie hier fest, ob eine Energieverbindung von der Wind-Anlage zu folgendem Prosumstorer (Technologie, Last, Netz, Markt etc.) bestehen soll",
+      "domain" : {
+        "values" : [ 0, 1 ]
+      },
+      "unit" : "Unbekannt"
+    },
+    "par_X_E_SS_WT_DS_ELoad_energyLink" : {
+      "dependencies" : [ "set_tech_SS_WT", "set_load_DS_E" ],
+      "processing" : [ ],
+      "overview" : false,
+      "description" : "Bitte legen Sie hier fest, ob eine Energieverbindung von der Windkraftanlage zu folgendem Prosumstorer (Technologie, Last, Netz, Markt etc.) bestehen soll",
+      "domain" : {
+        "values" : [ 0, 1 ]
+      },
+      "unit" : "Unbekannt"
     },
     "par_X_E_SS_WT_MS_EMarket_energyLink" : {
       "dependencies" : [ "set_tech_SS_WT", "set_market_MS_E" ],
@@ -8167,8 +8237,28 @@
       },
       "unit" : "Unbekannt"
     },
+    "par_X_H_NS_HGrid_DES_CHP_energyLink" : {
+      "dependencies" : [ "set_grid_NS_H", "set_tech_DES_CHP" ],
+      "processing" : [ ],
+      "overview" : false,
+      "description" : "Bitte legen Sie hier fest, ob eine Energieverbindung vom Wasserstoffnetz zu folgendem Prosumstorer (Technologie, Last, Netz, Markt etc.) bestehen soll",
+      "domain" : {
+        "values" : [ 0, 1 ]
+      },
+      "unit" : "Unbekannt"
+    },
     "par_X_H_NS_HGrid_DES_FC_energyLink" : {
       "dependencies" : [ "set_grid_NS_H", "set_tech_DES_FC" ],
+      "processing" : [ ],
+      "overview" : false,
+      "description" : "Bitte legen Sie hier fest, ob eine Energieverbindung vom Wasserstoffnetz zu folgendem Prosumstorer (Technologie, Last, Netz, Markt etc.) bestehen soll",
+      "domain" : {
+        "values" : [ 0, 1 ]
+      },
+      "unit" : "Unbekannt"
+    },
+    "par_X_H_NS_HGrid_DES_NGB_energyLink" : {
+      "dependencies" : [ "set_grid_NS_H", "set_tech_DES_NGB" ],
       "processing" : [ ],
       "overview" : false,
       "description" : "Bitte legen Sie hier fest, ob eine Energieverbindung vom Wasserstoffnetz zu folgendem Prosumstorer (Technologie, Last, Netz, Markt etc.) bestehen soll",
@@ -8342,6 +8432,16 @@
       "processing" : [ ],
       "overview" : false,
       "description" : "Bitte legen Sie hier fest, ob eine Energieverbindung vom Ölmarkt zu folgendem Prosumstorer (Technologie, Last, Netz, Markt etc.) bestehen soll",
+      "domain" : {
+        "values" : [ 0, 1 ]
+      },
+      "unit" : "Unbekannt"
+    },
+    "par_X_RF_MS_RFMarket_DES_CHP_energyLink" : {
+      "dependencies" : [ "set_market_MS_RF", "set_tech_DES_CHP" ],
+      "processing" : [ ],
+      "overview" : false,
+      "description" : "Bitte legen Sie hier fest, ob eine Energieverbindung vom Biomassemarkt zu folgendem Prosumstorer (Technologie, Last, Netz, Markt etc.) bestehen soll",
       "domain" : {
         "values" : [ 0, 1 ]
       },
@@ -8706,6 +8806,16 @@
         "values" : [ 0, 1 ]
       },
       "unit" : ""
+    },
+    "par_X_W_DES_EY_NS_WGrid_energyLink" : {
+      "dependencies" : [ "set_tech_DES_EY", "set_grid_NS_W" ],
+      "processing" : [ ],
+      "overview" : false,
+      "description" : "Bitte legen Sie hier fest, ob eine Energieverbindung vom Elektrolyseur zu folgendem Prosumstorer (Technologie, Last, Netz, Markt etc.) bestehen soll",
+      "domain" : {
+        "values" : [ 0, 1 ]
+      },
+      "unit" : "Unbekannt"
     },
     "par_X_W_DES_HP_DES_SC_energyLink" : {
       "dependencies" : [ "set_tech_DES_HP", "set_tech_DES_SC" ],

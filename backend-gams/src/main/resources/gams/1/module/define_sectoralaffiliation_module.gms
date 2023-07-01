@@ -106,9 +106,13 @@ set_primaryenergylink('O',set_tech_DES_CHP)=YES$(SUM(set_fromPss$set_energyLink(
 set_primaryenergylink('B',set_tech_DES_CHP)=YES$(SUM(set_fromPss$set_energyLink('B',set_fromPss,set_tech_DES_CHP),1)>0);
 set_primaryenergylink('L',set_tech_DES_CHP)=YES$(SUM(set_fromPss$set_energyLink('L',set_fromPss,set_tech_DES_CHP),1)>0);
 set_primaryenergylink('HC',set_tech_DES_CHP)=YES$(SUM(set_fromPss$set_energyLink('HC',set_fromPss,set_tech_DES_CHP),1)>0);
+set_primaryenergylink('RF',set_tech_DES_CHP)=YES$(SUM(set_fromPss$set_energyLink('RF',set_fromPss,set_tech_DES_CHP),1)>0);
+set_primaryenergylink('H',set_tech_DES_CHP)=YES$(SUM(set_fromPss$set_energyLink('H',set_fromPss,set_tech_DES_CHP),1)>0);
 
 set_primaryenergylink('G',set_tech_DES_NGB)=YES$(SUM(set_fromPss$set_energyLink('G',set_fromPss,set_tech_DES_NGB),1)>0);
 set_primaryenergylink('O',set_tech_DES_NGB)=YES$(SUM(set_fromPss$set_energyLink('O',set_fromPss,set_tech_DES_NGB),1)>0);
+set_primaryenergylink('B',set_tech_DES_NGB)=YES$(SUM(set_fromPss$set_energyLink('B',set_fromPss,set_tech_DES_NGB),1)>0);
+set_primaryenergylink('H',set_tech_DES_NGB)=YES$(SUM(set_fromPss$set_energyLink('H',set_fromPss,set_tech_DES_NGB),1)>0);
 
 set_primaryenergylink('W',set_tech_DES_CR)=YES$(SUM(set_fromPss$set_energyLink('W',set_fromPss,set_tech_DES_CR),1)>0);
 set_primaryenergylink('E',set_tech_DES_CR)=YES$(SUM(set_fromPss$set_energyLink('E',set_fromPss,set_tech_DES_CR),1)>0);

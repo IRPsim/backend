@@ -41,19 +41,22 @@ EQUATIONS EqHS2(set_ii,set_pss) Restriktion maximale Ladeenergie Wasserstoffspei
 EqHS2(set_t,set_tech_DES_HS)$(set_pss_opt(set_tech_DES_HS) AND par_X_pss_model(set_tech_DES_HS)=1)..
                  sum(set_toPss,var_energyFlow(set_t,'H',set_tech_DES_HS,set_toPss)$set_energyLink_opt('H',set_tech_DES_HS,set_toPss))
                  =l=
-                 par_P_DES_HS_discharge_max(set_tech_DES_HS) * sca_delta_ii;
+                 par_P_DES_HS_discharge_max(set_tech_DES_HS) * sca_delta_ii
+                 * par_P_DES_HS_discharge_utilpercent(set_t,set_tech_DES_HS);
 
 EQUATIONS EqHS3(set_ii,set_pss) Restriktion maximale Entladeenergie Wasserstoffspeicher;
 EqHS3(set_t,set_tech_DES_HS)$(set_pss_opt(set_tech_DES_HS) AND par_X_pss_model(set_tech_DES_HS)=1)..
                  sum(set_fromPss,var_energyFlow(set_t,'H',set_fromPss,set_tech_DES_HS)$set_energyLink_opt('H',set_fromPss,set_tech_DES_HS))
                  =l=
-                 par_P_DES_HS_charge_max(set_tech_DES_HS) * sca_delta_ii;
+                 par_P_DES_HS_charge_max(set_tech_DES_HS) * sca_delta_ii
+                 * par_P_DES_HS_charge_utilpercent(set_t,set_tech_DES_HS);
 
 EQUATIONS EqHS4(set_ii,set_pss) Restriktion maxinmaler Energiespeicherfüllstand Wasserstoffspeicher;
 EqHS4(set_t,set_tech_DES_HS)$set_pss_opt(set_tech_DES_HS)..
                  var_SOC_DES_HS_help(set_t, set_tech_DES_HS)
                  =l=
-                 par_SOC_DES_HS_cap_help(set_tech_DES_HS) * par_SOC_DES_HS_max(set_tech_DES_HS);
+                 par_SOC_DES_HS_cap_help(set_tech_DES_HS) * par_SOC_DES_HS_max(set_tech_DES_HS)
+                 * par_SOC_DES_HS_utilpercent(set_t,set_tech_DES_HS);
 
 EQUATIONS EqHS5(set_ii,set_pss) Restriktion mininimaler Energiespeicherfüllstand Wasserstoffspeicher;
 EqHS5(set_t,set_tech_DES_HS)$(set_pss_opt(set_tech_DES_HS) AND par_X_pss_model(set_tech_DES_HS)=1)..
@@ -132,8 +135,8 @@ EqHS10(set_ii_0,set_tech_DES_HS)$(set_t_help(set_ii_0) and set_pss_opt(set_tech_
                  var_SOC_DES_HS(set_ii_0, set_tech_DES_HS);
 
 
-MODEL mod_tech_DES_HS_orga / EqHS0, EqHS1, EqHS2, EqHS3, EqHS4, EqHS5, EqHS10, EqHS6, EqHS7, EqHS8, EqHS9 /;
-MODEL mod_tech_DES_HS_cust / EqHS0, EqHS1, EqHS2, EqHS3, EqHS4, EqHS5, EqHS10, EqHS6, EqHS7, EqHS8, EqHS9 /;
+MODEL mod_tech_DES_HS_orga / EqHS0, EqHS1, EqHS2, EqHS3, EqHS4, EqHS5, EqHS6, EqHS7, EqHS8, EqHS9, EqHS10 /;
+MODEL mod_tech_DES_HS_cust / EqHS0, EqHS1, EqHS2, EqHS3, EqHS4, EqHS5, EqHS6, EqHS7, EqHS8, EqHS9, EqHS10 /;
 
 
 

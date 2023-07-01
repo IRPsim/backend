@@ -18,7 +18,7 @@ $ONORDER
 
 ***Einlesen der GDX
 $GDXIN %gdxincname%
-*$GDXIN job-3340-jahr-0-parameter.gdx
+*$GDXIN job-4030-jahr-0-ergebnis.gdx
 
 SET set_percent_SOC_reduction /pp0*pp100/;
 
@@ -125,6 +125,25 @@ if (card(set_ii)=8760,
 );
 
 
+
+*par_X_W_DES_EY_NS_WGrid_energyLink(set_tech_DES_EY,set_grid_NS_W)=1;
+*par_X_pss_model('WT_JV_30')=0;
+*par_X_pss_model('PV_JV_10')=0;
+*par_SOC_DES_HS_cap('H2S_JV')=100000;
+*par_alpha_DES_HS_Ins(set_tech_DES_HS)=0.3;
+
+
+*par_X_pss_model('load_H1')=0;
+*par_L_DS_H(set_ii,set_load_DS_H)=1;
+*par_X_H_NS_fromHGrid_DES_toHS_energyLink(set_grid_NS_H,set_tech_DES_HS)=1;
+*par_OH_DS_HL_side('SMS','load_H1')=1;
+*par_COH_DS_HL_side('SMS','load_H1')=1;
+*par_L_DS_H(set_ii,set_load_DS_H)=1;
+
+*par_Eta_DES_HS_charge(set_tech_DES_HS)=0.99;
+*par_Eta_DES_HS_discharge(set_tech_DES_HS)=0.99;
+*par_Eta_DES_HS_selfdischarge(set_tech_DES_HS)=0.99;
+*$exit
 $ontext
 par_X_CL_DES_CLS_tank(set_tech_DES_CLS)=0;
 *par_SOC_DES_CLS_cap('RTC0')=13;
@@ -229,6 +248,32 @@ $INCLUDE ./module/business_model_Sonnentank_CH_module.gms
 $INCLUDE ./module/define_correction.gms
 
 
+
+*par_C_MS_E_SwissGrid(set_ii)=1;
+
+par_energyLinkTarif(set_ii,set_fromSide,'MS','E',set_grid_NS_E,set_pss)$(set_pssOH(set_fromSide,set_pss)
+and set_energyLink('E',set_grid_NS_E,set_pss)
+and (set_tech_DES(set_pss) or set_load_DS(set_pss))
+and sca_X_MS_DE_country=1)
+=par_C_MS_E_SwissGrid(set_ii)  ;
+
+
+par_energyLinkTarif(set_ii,set_fromSide,'MS','E',set_grid_NS_E,set_tech_DES_EY)$(set_pssOH(set_fromSide,set_tech_DES_EY)
+and set_energyLink('E',set_grid_NS_E,set_tech_DES_EY)
+and sca_X_MS_DE_country=1
+and par_C_MS_E_SwissGrid(set_ii)>0 )
+=0  ;
+
+par_energyLinkTarif(set_ii,set_fromSide,'MS','E',set_tech_SS_PV,set_pss)$(set_pssOH(set_fromSide,set_pss)
+and set_energyLink('E',set_tech_SS_PV,set_pss)
+and set_load_DS(set_pss) and sca_X_MS_DE_country=1)
+=par_C_MS_E_SwissGrid(set_ii)  ;
+
+
+par_energyLinkTarif(set_ii,set_fromSide,'MS','E',set_tech_SS_WT,set_pss)$(set_pssOH(set_fromSide,set_pss)
+and set_energyLink('E',set_tech_SS_WT,set_pss)
+and set_load_DS(set_pss) and sca_X_MS_DE_country=1)
+=par_C_MS_E_SwissGrid(set_ii)  ;
 ***-----------------------------------------------------------------------------
 ***##Deklarieren und Initialisieren der Zielfunktion und des Optimierungsmodells##
 ***-----------------------------------------------------------------------------

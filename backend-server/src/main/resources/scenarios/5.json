@@ -4558,6 +4558,21 @@
             "tech_HS1" : 0.0
           }
         },
+        "par_X_H_NS_HGrid_DES_CHP_energyLink" : {
+          "HGrid" : {
+            "tech_CHP1" : 0.0
+          }
+        },
+        "par_X_H_NS_HGrid_DES_NGB_energyLink" : {
+          "HGrid" : {
+            "tech_NGB1" : 0.0
+          }
+        },
+        "par_X_W_DES_EY_NS_WGrid_energyLink" : {
+          "tech_EY1" : {
+            "WGrid" : 0.0
+          }
+        },
         "par_COH_NS_grid_side" : {
           "SMS" : {
             "EGrid" : 1.0,
@@ -4661,6 +4676,38 @@
         "par_X_E_SS_WT_SS_EY_energyLink" : {
           "tech_WT1" : {
             "tech_EY1_SS" : 0.0
+          }
+        },
+        "par_X_E_SS_WT_DES_EY_energyLink" : {
+          "tech_WT1" : {
+            "tech_EY1" : 0.0
+          }
+        },
+        "par_X_E_SS_PV_DES_EY_energyLink" : {
+          "tech_PV1_SS" : {
+            "tech_EY1" : 0.0
+          }
+        },
+        "par_X_E_SS_WT_DES_ES_energyLink" : {
+          "tech_WT1" : {
+            "tech_ES1" : 0.0,
+            "tech_ES2" : 0.0
+          }
+        },
+        "par_X_E_SS_PV_DES_ES_energyLink" : {
+          "tech_PV1_SS" : {
+            "tech_ES1" : 0.0,
+            "tech_ES2" : 0.0
+          }
+        },
+        "par_X_E_SS_WT_DS_ELoad_energyLink" : {
+          "tech_WT1" : {
+            "load_E1" : 0.0
+          }
+        },
+        "par_X_E_SS_PV_DS_ELoad_energyLink" : {
+          "tech_PV1_SS" : {
+            "load_E1" : 0.0
           }
         },
         "par_F_W_WGrid_capacity" : {
@@ -7052,6 +7099,17 @@
             "tech_CHP1_SS" : 0.0
           }
         },
+        "par_X_B_MS_BMarket_DES_NGB_energyLink" : {
+          "SBMarket" : {
+            "tech_NGB1" : 0.0
+          },
+          "GBMarket" : {
+            "tech_NGB1" : 0.0
+          },
+          "LBMarket" : {
+            "tech_NGB1" : 0.0
+          }
+        },
         "par_X_B_MS_BMarket_DES_CHP_energyLink" : {
           "SBMarket" : {
             "tech_CHP1" : 1.0
@@ -7077,6 +7135,11 @@
         "par_X_RF_MS_RFMarket_SS_RC_energyLink" : {
           "RFMarket" : {
             "tech_RC1" : 0.0
+          }
+        },
+        "par_X_RF_MS_RFMarket_DES_CHP_energyLink" : {
+          "RFMarket" : {
+            "tech_CHP1" : 0.0
           }
         },
         "par_X_HC_MS_HCMarket_SS_TPS_energyLink" : {

@@ -70,6 +70,8 @@ set_energyLink('W',set_tech_DES_NGB,set_tech_DES_TS)$(par_X_W_DES_NGB_DES_TS_ene
 set_energyLink('W',set_tech_DES_NGB,set_tech_DES_SC)$(par_X_W_DES_NGB_DES_SC_energyLink(set_tech_DES_NGB,set_tech_DES_SC)=1 and par_X_pss_model(set_tech_DES_NGB)=1 and par_X_pss_model(set_tech_DES_SC)=1) = yes;
 set_energyLink('W',set_tech_DES_NGB,set_grid_NS_W)$(par_X_W_DES_NGB_NS_WGrid_energyLink(set_tech_DES_NGB,set_grid_NS_W)=1 and par_X_pss_model(set_tech_DES_NGB)=1 and par_X_pss_model(set_grid_NS_W)=1) = yes;
 
+set_energyLink('W',set_tech_DES_EY,set_grid_NS_W)$(par_X_W_DES_EY_NS_WGrid_energyLink(set_tech_DES_EY,set_grid_NS_W)=1 and par_X_pss_model(set_tech_DES_EY)=1 and par_X_pss_model(set_grid_NS_W)=1) = yes;
+
 
 set_energyLink('H',set_tech_DES_NGB,set_grid_NS_H)$(par_X_H_DES_NGB_NS_HGrid_energyLink(set_tech_DES_NGB,set_grid_NS_H)=1 and par_X_pss_model(set_tech_DES_NGB)=1 and par_X_pss_model(set_grid_NS_H)=1) = yes;
 set_energyLink('H',set_tech_DES_NGB,set_tech_DES_HS)$(par_X_H_DES_NGB_DES_HS_energyLink(set_tech_DES_NGB,set_tech_DES_HS)=1 and par_X_pss_model(set_tech_DES_NGB)=1 and par_X_pss_model(set_tech_DES_HS)=1) = yes;
@@ -111,6 +113,10 @@ set_energyLink('H',set_tech_DES_EY,set_tech_DES_FC)$(par_X_H_DES_EY_DES_FC_energ
 set_energyLink('H',set_tech_DES_EY,set_grid_NS_H)$(par_X_H_DES_EY_NS_HGrid_energyLink(set_tech_DES_EY,set_grid_NS_H)=1 and par_X_pss_model(set_tech_DES_EY)=1 and par_X_pss_model(set_grid_NS_H)=1) = yes;
 set_energyLink('H',set_grid_NS_H,set_load_DS_H)$(par_X_H_NS_HGrid_DS_HLoad_energyLink(set_grid_NS_H,set_load_DS_H)=1 and par_X_pss_model(set_load_DS_H)=1) = yes;
 set_energyLink('H',set_grid_NS_H,set_tech_DES_HS)$(par_X_H_NS_fromHGrid_DES_toHS_energyLink(set_grid_NS_H,set_tech_DES_HS)=1 and par_X_pss_model(set_tech_DES_HS)=1) = yes;
+
+set_energyLink('H',set_grid_NS_H,set_tech_DES_CHP)$(par_X_H_NS_HGrid_DES_CHP_energyLink(set_grid_NS_H,set_tech_DES_CHP)=1 and par_X_pss_model(set_tech_DES_CHP)=1 and par_X_pss_model(set_grid_NS_H)=1) = yes;
+set_energyLink('H',set_grid_NS_H,set_tech_DES_NGB)$(par_X_H_NS_HGrid_DES_NGB_energyLink(set_grid_NS_H,set_tech_DES_NGB)=1 and par_X_pss_model(set_tech_DES_NGB)=1 and par_X_pss_model(set_grid_NS_H)=1) = yes;
+
 set_energyLink('H',set_tech_DES_HS,set_load_DS_H)$(par_X_H_DES_HS_DS_HLoad_energyLink(set_tech_DES_HS,set_load_DS_H)=1 and par_X_pss_model(set_tech_DES_HS)=1 and par_X_pss_model(set_load_DS_H)=1) = yes;
 set_energyLink('H',set_tech_DES_HS,set_grid_NS_H)$(par_X_H_DES_fromHS_NS_toHGrid_energyLink(set_tech_DES_HS,set_grid_NS_H)=1 and par_X_pss_model(set_tech_DES_HS)=1) = yes;
 set_energyLink('H',set_tech_DES_HS,set_tech_DES_FC)$(par_X_H_DES_HS_DES_FC_energyLink(set_tech_DES_HS,set_tech_DES_FC)=1 and par_X_pss_model(set_tech_DES_HS)=1 and par_X_pss_model(set_tech_DES_FC)=1) = yes;
@@ -135,6 +141,18 @@ set_energyLink('CL',set_tech_SS_EY,set_load_DS_CL)$(par_X_CL_SS_EY_DS_CLLoad_ene
 set_energyLink('CL',set_tech_SS_EY,set_tech_DES_CLS)$(par_X_CL_SS_EY_DES_CLS_energyLink(set_tech_SS_EY,set_tech_DES_CLS)=1 and par_X_pss_model(set_tech_SS_EY)=1 and par_X_pss_model(set_tech_DES_CLS)=1) = yes;
 
 set_energyLink('E',set_tech_SS_WT,set_grid_NS_E)$(par_X_E_SS_WT_NS_EGrid_energyLink(set_tech_SS_WT,set_grid_NS_E)=1 and (par_X_pss_schedule(set_tech_SS_WT)=1 or par_X_pss_model(set_tech_SS_WT)=1)) = yes;
+
+set_energyLink('E',set_tech_SS_WT,set_tech_DES_EY)$(par_X_E_SS_WT_DES_EY_energyLink(set_tech_SS_WT,set_tech_DES_EY)=1 and (par_X_pss_schedule(set_tech_SS_WT)=1 or par_X_pss_model(set_tech_SS_WT)=1)) = yes;
+set_energyLink('E',set_tech_SS_PV,set_tech_DES_EY)$(par_X_E_SS_PV_DES_EY_energyLink(set_tech_SS_PV,set_tech_DES_EY)=1 and (par_X_pss_schedule(set_tech_SS_PV)=1 or par_X_pss_model(set_tech_SS_PV)=1)) = yes;
+
+set_energyLink('E',set_tech_SS_WT,set_tech_DES_ES)$(par_X_E_SS_WT_DES_ES_energyLink(set_tech_SS_WT,set_tech_DES_ES)=1 and (par_X_pss_schedule(set_tech_SS_WT)=1 or par_X_pss_model(set_tech_SS_WT)=1)) = yes;
+set_energyLink('E',set_tech_SS_PV,set_tech_DES_ES)$(par_X_E_SS_PV_DES_ES_energyLink(set_tech_SS_PV,set_tech_DES_ES)=1 and (par_X_pss_schedule(set_tech_SS_PV)=1 or par_X_pss_model(set_tech_SS_PV)=1)) = yes;
+
+set_energyLink('E',set_tech_SS_PV,set_load_DS_E)$(par_X_E_SS_PV_DS_Eload_energyLink(set_tech_SS_PV,set_load_DS_E)=1 and (par_X_pss_schedule(set_tech_SS_PV)=1 or par_X_pss_model(set_tech_SS_PV)=1)) = yes;
+set_energyLink('E',set_tech_SS_WT,set_load_DS_E)$(par_X_E_SS_WT_DS_Eload_energyLink(set_tech_SS_WT,set_load_DS_E)=1 and (par_X_pss_schedule(set_tech_SS_WT)=1 or par_X_pss_model(set_tech_SS_WT)=1)) = yes;
+
+
+
 set_energyLink('E',set_tech_SS_CHP,set_grid_NS_E)$(par_X_E_SS_CHP_NS_EGrid_energyLink(set_tech_SS_CHP,set_grid_NS_E)=1 and (par_X_pss_schedule(set_tech_SS_CHP)=1 or par_X_pss_model(set_tech_SS_CHP)=1)) = yes;
 set_energyLink('E',set_tech_SS_RH,set_grid_NS_E)$(par_X_E_SS_RH_NS_EGrid_energyLink(set_tech_SS_RH,set_grid_NS_E)=1 and (par_X_pss_schedule(set_tech_SS_RH)=1 or par_X_pss_model(set_tech_SS_RH)=1)) = yes;
 set_energyLink('E',set_tech_SS_PV,set_grid_NS_E)$(par_X_E_SS_PV_NS_EGrid_energyLink(set_tech_SS_PV,set_grid_NS_E)=1 and (par_X_pss_schedule(set_tech_SS_PV)=1 or par_X_pss_model(set_tech_SS_PV)=1)) = yes;
@@ -240,9 +258,11 @@ set_energyLink('O',set_market_MS_O,set_tech_SS_PLB)$(par_X_O_MS_OMarket_SS_PLB_e
 set_energyLink('B',set_market_MS_B,set_tech_SS_PLB)$(par_X_B_MS_BMarket_SS_PLB_energyLink(set_market_MS_B,set_tech_SS_PLB)=1 and (par_X_pss_schedule(set_market_MS_B)=1 or par_X_pss_model(set_tech_SS_PLB)=1)) = yes;
 set_energyLink('B',set_market_MS_B,set_tech_SS_CHP)$(par_X_B_MS_BMarket_SS_CHP_energyLink(set_market_MS_B,set_tech_SS_CHP)=1 and (par_X_pss_schedule(set_market_MS_B)=1 or par_X_pss_model(set_tech_SS_CHP)=1)) = yes;
 set_energyLink('B',set_market_MS_B,set_tech_DES_CHP)$(par_X_B_MS_BMarket_DES_CHP_energyLink(set_market_MS_B,set_tech_DES_CHP)=1 and (par_X_pss_schedule(set_market_MS_B)=1 or par_X_pss_model(set_tech_DES_CHP)=1)) = yes;
+set_energyLink('B',set_market_MS_B,set_tech_DES_NGB)$(par_X_B_MS_BMarket_DES_NGB_energyLink(set_market_MS_B,set_tech_DES_NGB)=1 and par_X_pss_model(set_tech_DES_NGB)=1) = yes;
 set_energyLink('B',set_market_MS_B,set_tech_SS_TPS)$(par_X_B_MS_BMarket_SS_TPS_energyLink(set_market_MS_B,set_tech_SS_TPS)=1 and (par_X_pss_schedule(set_market_MS_B)=1 or par_X_pss_model(set_tech_SS_TPS)=1)) = yes;
 
 set_energyLink('RF',set_market_MS_RF,set_tech_SS_RC)$(par_X_RF_MS_RFMarket_SS_RC_energyLink(set_market_MS_RF,set_tech_SS_RC)=1 and (par_X_pss_schedule(set_tech_SS_RC)=1 or par_X_pss_model(set_tech_SS_RC)=1 and par_X_pss_model(set_market_MS_RF)=1)) = yes;
+set_energyLink('RF',set_market_MS_RF,set_tech_DES_CHP)$(par_X_RF_MS_RFMarket_DES_CHP_energyLink(set_market_MS_RF,set_tech_DES_CHP)=1 and par_X_pss_model(set_tech_DES_CHP)=1 and par_X_pss_model(set_market_MS_RF)=1) = yes;
 
 set_energyLink('HC',set_market_MS_HC,set_tech_SS_TPS)$(par_X_HC_MS_HCMarket_SS_TPS_energyLink(set_market_MS_HC,set_tech_SS_TPS)=1 and (par_X_pss_schedule(set_tech_SS_TPS)=1 or par_X_pss_model(set_tech_SS_TPS)=1)) = yes;
 set_energyLink('HC',set_market_MS_HC,set_tech_SS_CHP)$(par_X_HC_MS_HCMarket_SS_CHP_energyLink(set_market_MS_HC,set_tech_SS_CHP)=1 and (par_X_pss_schedule(set_tech_SS_CHP)=1 or par_X_pss_model(set_tech_SS_CHP)=1)) = yes;

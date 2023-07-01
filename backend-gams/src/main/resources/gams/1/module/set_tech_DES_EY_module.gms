@@ -101,7 +101,7 @@ EqEY7_DES(set_ii_0,set_tech_DES_EY)$(set_t_help(set_ii_0) AND set_pss_opt(set_te
                  - min (par_P_pss_rd_stop(set_tech_DES_EY)*sca_delta_ii, par_P_DES_EY_min(set_tech_DES_EY)*sca_delta_ii+par_P_pss_rd_general(set_tech_DES_EY)*sca_delta_ii)*(1-var_S_pss(set_ii_0-1,set_tech_DES_EY));
 
 *Beschraenkung der Vorhaltung negativer Regelenergie
-*Negative Regelenergie erfodert das Hochfahren der Produktionsanlage hins. der genutzten Leistung
+*Negative Regelenergie erfodert das Hochfahren der Produktionsanlage hinsichtlich der genutzten Leistung
 *Negative Regelenergie ist kleiner als die maximale elektrische Leistung der Anlage minus der genutzten Elektrischen Leistung, also dem Zufluss der Anlage
 EQUATIONS EqEY8_DES(set_ii,set_pss) Restriktion maximale Kapazität Stromaufnahme negative Regelenergie Durchlauferhitzer;
 EqEY8_DES(set_t,set_tech_DES_EY)$(set_pss_opt(set_tech_DES_EY) AND par_X_pss_model(set_tech_DES_EY)=1)..
@@ -111,7 +111,7 @@ EqEY8_DES(set_t,set_tech_DES_EY)$(set_pss_opt(set_tech_DES_EY) AND par_X_pss_mod
                  - sum(set_fromPss,var_energyFlow(set_t,'E',set_fromPss,set_tech_DES_EY)$set_energyLink_opt('E',set_fromPss,set_tech_DES_EY)));
 
 *Beschraenkung der Vorhaltung positiver Regelenergie
-*Positive Regelenergie erfodert das Herunterfahren der Produktionsanlage hins. der genutzten Leistung
+*Positive Regelenergie erfodert das Herunterfahren der Produktionsanlage hinsichtlich der genutzten Leistung
 *Negative Regelenergie ist kleiner als die maximale elektrische Leistung der Anlage minus der genutzten Elektrischen Leistung, also dem Zufluss der Anlage
 EQUATIONS EqEY9_DES(set_ii,set_pss) Restriktion maximale Kapazität Stromaufnahme positiver Regelenergie Durchlauferhitzer;
 EqEY9_DES(set_t,set_tech_DES_EY)$(set_pss_opt(set_tech_DES_EY) AND par_X_pss_model(set_tech_DES_EY)=1)..
@@ -242,5 +242,13 @@ EqEY25_DES(set_ii_0,set_tech_DES_EY)$(set_t_help(set_ii_0) AND set_pss_opt(set_t
                  var_heating_pss(set_ii_0-1,set_tech_DES_EY);
 
 
-MODEL mod_tech_DES_EY_cust / EqEY0_DES, EqEY00_DES, EqEY1_DES, EqEY2_DES, EqEY3_DES, EqEY4_DES, EqEY5_DES, EqEY6_DES, EqEY7_DES, EqEY8_DES, EqEY9_DES, EqEY10_DES, EqEY11_DES, EqEY13_DES, EqEY14_DES, EqEY15_DES, EqEY16_DES, EqEY17_DES, EqEY18_DES, EqEY19_DES, EqEY20_DES, EqEY21_DES, EqEY22_DES, EqEY23_DES, EqEY24_DES, EqEY25_DES /;
-MODEL mod_tech_DES_EY_orga / EqEY0_DES, EqEY000_DES, EqEY1_DES, EqEY2_DES, EqEY3_DES, EqEY4_DES, EqEY5_DES, EqEY6_DES, EqEY7_DES, EqEY8_DES, EqEY9_DES, EqEY10_DES, EqEY11_DES, EqEY13_DES, EqEY14_DES, EqEY15_DES, EqEY16_DES, EqEY17_DES, EqEY18_DES, EqEY19_DES, EqEY20_DES, EqEY21_DES, EqEY22_DES, EqEY23_DES, EqEY24_DES, EqEY25_DES /;
+Equation EqEY99_DES(set_ii,set_pss) Abwärme Wasserstoff-Wärmeverhältnis;
+EqEY99_DES(set_t,set_tech_DES_EY)$(set_pss_opt(set_tech_DES_EY) AND par_X_pss_model(set_tech_DES_EY)=1)..
+                 sum(set_toPss,var_energyFlow(set_t,'W',set_tech_DES_EY,set_toPss)$set_energyLink_opt('W',set_tech_DES_EY,set_toPss))
+                 =l=
+                 sum(set_toPss,var_energyFlow(set_t,'H',set_tech_DES_EY,set_toPss)$set_energyLink_opt('H',set_tech_DES_EY,set_toPss)) * 0.15;
+
+
+
+MODEL mod_tech_DES_EY_cust / EqEY0_DES, EqEY00_DES, EqEY1_DES, EqEY2_DES, EqEY3_DES, EqEY4_DES, EqEY5_DES, EqEY6_DES, EqEY7_DES, EqEY8_DES, EqEY9_DES, EqEY10_DES, EqEY11_DES, EqEY13_DES, EqEY14_DES, EqEY15_DES, EqEY16_DES, EqEY17_DES, EqEY18_DES, EqEY19_DES, EqEY20_DES, EqEY21_DES, EqEY22_DES, EqEY23_DES, EqEY24_DES, EqEY25_DES, EqEY99_DES /;
+MODEL mod_tech_DES_EY_orga / EqEY0_DES, EqEY000_DES, EqEY1_DES, EqEY2_DES, EqEY3_DES, EqEY4_DES, EqEY5_DES, EqEY6_DES, EqEY7_DES, EqEY8_DES, EqEY9_DES, EqEY10_DES, EqEY11_DES, EqEY13_DES, EqEY14_DES, EqEY15_DES, EqEY16_DES, EqEY17_DES, EqEY18_DES, EqEY19_DES, EqEY20_DES, EqEY21_DES, EqEY22_DES, EqEY23_DES, EqEY24_DES, EqEY25_DES, EqEY99_DES /;

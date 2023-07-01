@@ -6,7 +6,7 @@ par_SOC_DES_TS_cap_help(set_tech_DES_TS)= par_SOC_DES_TS_cap(set_tech_DES_TS)* (
 PARAMETER par_SOC_DES_TS_min_help(set_tech_DES_TS);
 par_SOC_DES_TS_min_help(set_tech_DES_TS) = 0;
 PARAMETER par_SOC_DES_TS_initial(set_ii_0,set_tech_DES_TS);
-par_SOC_DES_TS_initial(set_ii_0,set_tech_DES_TS)$(ORD(set_ii_0)=1) = par_SOC_DES_TS_cap(set_tech_DES_TS) * 0;
+par_SOC_DES_TS_initial(set_ii_0,set_tech_DES_TS)$(ORD(set_ii_0)=1) = par_SOC_DES_TS_cap(set_tech_DES_TS) * 0.5;
 
 
 ***-----------------------------------------------------------------------------

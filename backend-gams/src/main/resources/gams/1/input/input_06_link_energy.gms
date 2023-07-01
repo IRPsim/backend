@@ -345,6 +345,40 @@ $LOAD par_X_E_NS_EGrid_DS_ELoad_energyLink
 PARAMETER par_X_E_SS_WT_NS_EGrid_energyLink(set_tech_SS_WT,set_grid_NS_E) Energieverbindung
 $LOAD par_X_E_SS_WT_NS_EGrid_energyLink
 
+
+* - description: Bitte legen Sie hier fest, ob eine Energieverbindung von der Windkraftanlage zu folgendem Prosumstorer (Technologie, Last, Netz, Markt etc.) bestehen soll
+* - type: Boolean
+* - identifier: Energieverbindung von Windkraftanlage zu Prosumstorer
+* - domain: [0|1]
+* - color: DarkCyan
+PARAMETER par_X_E_SS_WT_DS_ELoad_energyLink(set_tech_SS_WT,set_load_DS_E) Energieverbindung
+$LOAD par_X_E_SS_WT_DS_ELoad_energyLink
+
+* - description: Bitte legen Sie hier fest, ob eine Energieverbindung von der Windkraftanlage zu folgendem Prosumstorer (Technologie, Last, Netz, Markt etc.) bestehen soll
+* - type: Boolean
+* - identifier: Energieverbindung von Windkraftanlage zu Prosumstorer
+* - domain: [0|1]
+* - color: DarkCyan
+PARAMETER par_X_E_SS_PV_DS_ELoad_energyLink(set_tech_SS_PV,set_load_DS_E) Energieverbindung
+$LOAD par_X_E_SS_PV_DS_ELoad_energyLink
+
+
+* - description: Bitte legen Sie hier fest, ob eine Energieverbindung von der Windkraftanlage zu folgendem Prosumstorer (Technologie, Last, Netz, Markt etc.) bestehen soll
+* - type: Boolean
+* - identifier: Energieverbindung von Windkraftanlage zu Prosumstorer
+* - domain: [0|1]
+* - color: DarkCyan
+PARAMETER par_X_E_SS_WT_DES_ES_energyLink(set_tech_SS_WT,set_tech_DES_ES) Energieverbindung
+$LOAD par_X_E_SS_WT_DES_ES_energyLink
+
+* - description: Bitte legen Sie hier fest, ob eine Energieverbindung von der Windkraftanlage zu folgendem Prosumstorer (Technologie, Last, Netz, Markt etc.) bestehen soll
+* - type: Boolean
+* - identifier: Energieverbindung von Windkraftanlage zu Prosumstorer
+* - domain: [0|1]
+* - color: DarkCyan
+PARAMETER par_X_E_SS_PV_DES_ES_energyLink(set_tech_SS_PV,set_tech_DES_ES) Energieverbindung
+$LOAD par_X_E_SS_PV_DES_ES_energyLink
+
 * - description: Bitte legen Sie hier fest, ob eine Energieverbindung von der Kraft-Wärme-Kopplungsanlage zu folgendem Prosumstorer (Technologie, Last, Netz, Markt etc.) bestehen soll
 * - type: Boolean
 * - identifier: Energieverbindung von Kraft-Wärme-Kopplungsanlage zu Prosumstorer
@@ -368,6 +402,23 @@ $LOAD par_X_E_SS_RH_NS_EGrid_energyLink
 * - color: DarkCyan
 PARAMETER par_X_E_SS_PV_NS_EGrid_energyLink(set_tech_SS_PV,set_grid_NS_E) Energieverbindung
 $LOAD par_X_E_SS_PV_NS_EGrid_energyLink
+
+* - description: Bitte legen Sie hier fest, ob eine Energieverbindung von der PV-Anlage zu folgendem Prosumstorer (Technologie, Last, Netz, Markt etc.) bestehen soll
+* - type: Boolean
+* - identifier: Energieverbindung von PV-Anlage zu Prosumstorer
+* - domain: [0|1]
+* - color: DarkCyan
+PARAMETER par_X_E_SS_PV_DES_EY_energyLink(set_tech_SS_PV,set_tech_DES_EY) Energieverbindung
+$LOAD par_X_E_SS_PV_DES_EY_energyLink
+
+* - description: Bitte legen Sie hier fest, ob eine Energieverbindung von der Wind-Anlage zu folgendem Prosumstorer (Technologie, Last, Netz, Markt etc.) bestehen soll
+* - type: Boolean
+* - identifier: Energieverbindung von Wind-Anlage zu Prosumstorer
+* - domain: [0|1]
+* - color: DarkCyan
+PARAMETER par_X_E_SS_WT_DES_EY_energyLink(set_tech_SS_WT,set_tech_DES_EY) Energieverbindung
+$LOAD par_X_E_SS_WT_DES_EY_energyLink
+
 
 * - description: Bitte legen Sie hier fest, ob eine Energieverbindung von der Windkraftanlage zu folgendem Prosumstorer (Technologie, Last, Netz, Markt etc.) bestehen soll
 * - type: Boolean
@@ -1434,6 +1485,20 @@ PARAMETER par_X_B_MS_BMarket_DES_CHP_energyLink(set_market_MS_B,set_tech_DES_CHP
 $LOAD par_X_B_MS_BMarket_DES_CHP_energyLink
 
 
+* - description: Bitte legen Sie hier fest, ob eine Energieverbindung vom Biomassemarkt zu folgendem Prosumstorer (Technologie, Last, Netz, Markt etc.) bestehen soll
+* - type: Boolean
+* - identifier: Energieverbindung von Biomassemarkt zu Prosumstorer
+* - domain: [0|1]
+PARAMETER par_X_RF_MS_RFMarket_DES_CHP_energyLink(set_market_MS_RF,set_tech_DES_CHP) Energieverbindung
+$LOAD par_X_RF_MS_RFMarket_DES_CHP_energyLink
+
+
+* - description: Bitte legen Sie hier fest, ob eine Energieverbindung vom Biomassemarkt zu folgendem Prosumstorer (Technologie, Last, Netz, Markt etc.) bestehen soll
+* - type: Boolean
+* - identifier: Energieverbindung von Abfallmarkt zu Prosumstorer
+* - domain: [0|1]
+PARAMETER par_X_B_MS_BMarket_DES_NGB_energyLink(set_market_MS_B,set_tech_DES_NGB) Energieverbindung
+$LOAD par_X_B_MS_BMarket_DES_NGB_energyLink
 
 
 

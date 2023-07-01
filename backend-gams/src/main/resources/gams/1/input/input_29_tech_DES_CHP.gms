@@ -38,7 +38,7 @@ $LOAD par_Eta_DES_CHP
 * - type: Float
 * - identifier: Stromkennzahl Kraft-Wärme-Kopplungsanlage
 * - unit:
-* - domain: (0,1]
+* - domain: (0,10]
 * - default: 1
 * - validation:
 * - hidden:

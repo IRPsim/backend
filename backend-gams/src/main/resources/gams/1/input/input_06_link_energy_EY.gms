@@ -12,6 +12,13 @@ $LOAD par_X_H_DES_EY_DES_FC_energyLink
 PARAMETER par_X_H_DES_EY_NS_HGrid_energyLink(set_tech_DES_EY,set_grid_NS_H) Energieverbindung
 $LOAD par_X_H_DES_EY_NS_HGrid_energyLink
 
+* - description: Bitte legen Sie hier fest, ob eine Energieverbindung vom Elektrolyseur zu folgendem Prosumstorer (Technologie, Last, Netz, Markt etc.) bestehen soll
+* - type: Boolean
+* - identifier: Energieverbindung von Elektrolyseur zu Prosumstorer
+* - domain: [0|1]
+PARAMETER par_X_W_DES_EY_NS_WGrid_energyLink(set_tech_DES_EY,set_grid_NS_W) Energieverbindung
+$LOAD par_X_W_DES_EY_NS_WGrid_energyLink
+
 * - description: Bitte legen Sie hier fest, ob eine Energieverbindung vom Wasserstoffspeicher zu folgendem Prosumstorer (Technologie, Last, Netz, Markt etc.) bestehen soll
 * - type: Boolean
 * - identifier: Energieverbindung von Wasserstoffspeicher zu Prosumstorer
@@ -121,6 +128,9 @@ $LOAD par_X_H_DES_fromHS_NS_toHGrid_energyLink
 PARAMETER par_X_H_NS_HGrid_DS_HLoad_energyLink(set_grid_NS_H,set_load_DS_H) Energieverbindung
 $LOAD par_X_H_NS_HGrid_DS_HLoad_energyLink
 
+
+
+
 * - description: Bitte legen Sie hier fest, ob eine Energieverbindung vom Wasserstoffmarkt zu folgendem Prosumstorer (Technologie, Last, Netz, Markt etc.) bestehen soll
 * - type: Boolean
 * - identifier: Energieverbindung von Wasserstoffmarkt zu Prosumstorer
@@ -148,3 +158,17 @@ $LOAD par_X_H_NS_HGrid_DES_FC_energyLink
 * - domain: [0|1]
 PARAMETER par_X_E_DES_FC_NS_EGrid_energyLink(set_tech_DES_FC,set_grid_NS_E) Energieverbindung
 $LOAD par_X_E_DES_FC_NS_EGrid_energyLink
+
+* - description: Bitte legen Sie hier fest, ob eine Energieverbindung vom Wasserstoffnetz zu folgendem Prosumstorer (Technologie, Last, Netz, Markt etc.) bestehen soll
+* - type: Boolean
+* - identifier: Energieverbindung von Wasserstoffnetz zu Prosumstorer
+* - domain: [0|1]
+PARAMETER par_X_H_NS_HGrid_DES_CHP_energyLink(set_grid_NS_H,set_tech_DES_CHP) Energieverbindung
+$LOAD par_X_H_NS_HGrid_DES_CHP_energyLink
+
+* - description: Bitte legen Sie hier fest, ob eine Energieverbindung vom Wasserstoffnetz zu folgendem Prosumstorer (Technologie, Last, Netz, Markt etc.) bestehen soll
+* - type: Boolean
+* - identifier: Energieverbindung von Wasserstoffnetz zu Prosumstorer
+* - domain: [0|1]
+PARAMETER par_X_H_NS_HGrid_DES_NGB_energyLink(set_grid_NS_H,set_tech_DES_NGB) Energieverbindung
+$LOAD par_X_H_NS_HGrid_DES_NGB_energyLink
