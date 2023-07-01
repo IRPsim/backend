@@ -68,7 +68,7 @@ public class GAMSParameterizer {
 
 			// handler.startBlocking();
 
-			LOG.info("Parametrisierung {} (Jahr {})beendet", id, yearIndex);
+			LOG.info("Parametrisierung {} (Jahr {}) beendet", id, yearIndex);
 		} catch (IOException | TimeseriesTooShortException e) {
 			LOG.info("Persistiere " + id);
 			persistError(id, e);

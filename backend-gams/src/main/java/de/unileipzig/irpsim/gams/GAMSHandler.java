@@ -312,6 +312,10 @@ public class GAMSHandler {
 	 */
 	public static String findGAMSDirFromEnv(){
 		final String envVar = System.getenv(Constants.LD_GAMS_PATH);
+		if (envVar ==  null) {
+		   LOG.error(Constants.LD_GAMS_PATH + " was not defined!");
+		   return null;
+		}
 		if (envVar.contains(":")){
 			String[] paths = envVar.split(":");
 			for (String path: paths) {

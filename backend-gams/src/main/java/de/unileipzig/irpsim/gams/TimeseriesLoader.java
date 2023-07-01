@@ -97,7 +97,7 @@ public class TimeseriesLoader {
          if (timeseries.size() != 672 &&
                timeseries.size() != 288 &&
                timeseries.size() != 168 &&
-               timeseries.size() < yeardata.getConfig().getResolution()) {
+               timeseries.size() != yeardata.getConfig().getResolution()) {
             LOG.trace("Rollout {}", timeseries.getSeriesname());
             errorMessage = rolloutTimeseries(timeseriesReferences, errorMessage, timeseries);
          }
@@ -114,9 +114,9 @@ public class TimeseriesLoader {
                + ", darf aber nur 35040, 8760, 672, 365, 52, 12 oder 1 (für Viertelstundenauflösung) oder 8760 oder 168 (für Stundenauflösung) sein.";
          return errorMessage;
       }
-      final int toLength = yeardata.getConfig().getResolution();
+      final int resolution = yeardata.getConfig().getResolution();
 
-      final List<Double> changedTimeseries = StammdatenUtil.rolloutTimeseries(concreteInterval, timeseries.getValues(), toLength);
+      final List<Double> changedTimeseries = StammdatenUtil.rolloutTimeseries(concreteInterval, timeseries.getValues(), resolution);
       timeseries.setValues(changedTimeseries);
       return errorMessage;
    }

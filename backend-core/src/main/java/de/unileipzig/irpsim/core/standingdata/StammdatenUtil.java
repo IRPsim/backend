@@ -17,13 +17,13 @@ public class StammdatenUtil {
    private static final int HOUR_LENGTH = 4;
    private static final int DAY_LENGTH = 24;
 
-   public static List<Double> rolloutTimeseries(final TimeInterval concreteInterval, final List<Double> values, final int toLength) {
-      if (toLength == 35040) {
+   public static List<Double> rolloutTimeseries(final TimeInterval concreteInterval, final List<Double> values, final int resolution) {
+      if (resolution == 35040) {
          return rolloutTimeseriesTo35040(concreteInterval, values);
-      } else if (toLength == 8760) {
+      } else if (resolution == 8760) {
          return rolloutTimeseriesTo8760(concreteInterval, values);
       } else {
-         throw new RuntimeException("Can only rollout to 35040 or 8760, rollout to " + toLength + " not possible.");
+         throw new RuntimeException("Can only rollout to 35040 or 8760, rollout to " + resolution + " not possible.");
       }
    }
 

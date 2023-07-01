@@ -1,6 +1,7 @@
 package de.unileipzig.irpsim.server.endpoints;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -45,7 +46,7 @@ public class Cleaner implements Runnable {
     * @throws JsonParseException
     * @throws JsonMappingException
     */
-   private void removeAllFromParameter(final List<Integer> datensatzIds, final String parameterString, final String title, final boolean input)
+   private void removeAllFromParameter(final Set<Integer> datensatzIds, final String parameterString, final String title, final boolean input)
          throws IOException, JsonParseException,
          JsonMappingException {
       try {
@@ -61,10 +62,19 @@ public class Cleaner implements Runnable {
          }
       } catch (UnrecognizedPropertyException e) {
          LOG.info("Warning! Using deprecated single model data in {}", title);
+         final JSONParametersMultimodel parameters = Constants.MAPPER.readValue(parameterString, JSONParametersMultimodel.class);
+         final BackendParametersMultiModel backendParameters = new BackendParametersMultiModel(parameters);
+         for (ConnectedModelParameter model : backendParameters.getModels()) {
+            LOG.debug("Bearbeite {} Jahre: {}", title, model.getYeardata().length);
+            for (int year = 0; year < model.getYeardata().length; year++) {
+               final BackendParametersYearData yeardata = model.getYeardata()[year];
+               removeYeardata(datensatzIds, title, input, year, yeardata);
+            }
+         }
       }
    }
 
-   private void removeYeardata(final List<Integer> datensatzIds, final String title, final boolean input, int year, final BackendParametersYearData yeardata) {
+   private void removeYeardata(final Set<Integer> datensatzIds, final String title, final boolean input, int year, final BackendParametersYearData yeardata) {
       if (yeardata != null) {
          final Set<Integer> references = yeardata.collectTimeseriesReferences(input).keySet();
          LOG.debug("Entferne Referenzen:  {} {}", references.size(), references);
@@ -77,20 +87,20 @@ public class Cleaner implements Runnable {
    }
 
    public void deleteNonReferencedData() {
-      final List<Integer> datensatzIds = getDatensatzIds();
-      removeFromScenarios(datensatzIds);
-      removeFromJobs(datensatzIds);
+      final Set<Integer> datensatzIds = getDatensatzIds();
+      removeScenarioReferences(datensatzIds);
+      removeJobReferences(datensatzIds);
       executeDeletion(datensatzIds);
    }
 
-   private void removeFromJobs(final List<Integer> datensatzIds) {
+   private void removeJobReferences(final Set<Integer> datensatzIds) {
       try (final ClosableEntityManager em = ClosableEntityManagerProxy.newInstance()) {
          final CriteriaBuilder cBuilder = em.getCriteriaBuilder();
          final CriteriaQuery<OptimisationJobPersistent> ojpQuery = cBuilder.createQuery(OptimisationJobPersistent.class);
          ojpQuery.from(OptimisationJobPersistent.class);
          final List<OptimisationJobPersistent> optJobs = em.createQuery(ojpQuery).getResultList();
-         LOG.debug("optJobs: {}", optJobs);
          state.toAnalyze = optJobs.size();
+         LOG.debug("optJobs: {}", optJobs);
 
          removeAllJobReferences(datensatzIds, optJobs);
       } catch (final IOException e) {
@@ -98,7 +108,7 @@ public class Cleaner implements Runnable {
       }
    }
 
-   private void executeDeletion(final List<Integer> datensatzIds) {
+   private void executeDeletion(final Set<Integer> datensatzIds) {
       try (final ClosableEntityManager em = ClosableEntityManagerProxy.newInstance()) {
          state.toDelete = datensatzIds.size();
          state.deleted = 0;
@@ -107,7 +117,7 @@ public class Cleaner implements Runnable {
       }
    }
 
-   private void removeFromScenarios(final List<Integer> datensatzIds) {
+   private void removeScenarioReferences(final Set<Integer> datensatzIds) {
       try (final ClosableEntityManager em = ClosableEntityManagerProxy.newInstance()) {
          final CriteriaBuilder cBuilder = em.getCriteriaBuilder();
          final CriteriaQuery<OptimisationScenario> osQuery = cBuilder.createQuery(OptimisationScenario.class);
@@ -115,16 +125,16 @@ public class Cleaner implements Runnable {
          final List<OptimisationScenario> optimisationScenarios = em.createQuery(osQuery).getResultList();
          LOG.debug("optimisationScenarios: {}", optimisationScenarios);
 
-         state.toAnalyze = optimisationScenarios.size();
          state.analyzed = 0;
+         state.toAnalyze = optimisationScenarios.size();
          removeAllScenarioReferences(datensatzIds, optimisationScenarios);
       } catch (final IOException e) {
          e.printStackTrace();
       }
    }
 
-   private List<Integer> getDatensatzIds() {
-      final List<Integer> datensatzIds;
+   private Set<Integer> getDatensatzIds() {
+      final Set<Integer> datensatzIds;
       try (final ClosableEntityManager em = ClosableEntityManagerProxy.newInstance()) {
 
          final CriteriaBuilder cBuilder = em.getCriteriaBuilder();
@@ -132,13 +142,13 @@ public class Cleaner implements Runnable {
          final CriteriaQuery<Integer> idQuery = cBuilder.createQuery(Integer.class);
          final Root<StaticData> sdRoot = idQuery.from(StaticData.class);
          idQuery.where(cBuilder.isNull(sdRoot.get("stammdatum"))).select(sdRoot.get("id"));
-         datensatzIds = em.createQuery(idQuery).getResultList();
+         datensatzIds = new HashSet<>(em.createQuery(idQuery).getResultList());
          LOG.debug("datensatzIds: {}", datensatzIds);
       }
       return datensatzIds;
    }
 
-   private void removeAllScenarioReferences(final List<Integer> datensatzIds, final List<OptimisationScenario> scenarios)
+   private void removeAllScenarioReferences(final Set<Integer> datensatzIds, final List<OptimisationScenario> scenarios)
          throws IOException, JsonParseException, JsonMappingException {
       for (final OptimisationScenario scenario : scenarios) {
          removeAllFromParameter(datensatzIds, scenario.getData(), "Szenario " + scenario.getId(), true);
@@ -146,7 +156,7 @@ public class Cleaner implements Runnable {
       }
    }
 
-   private void removeAllJobReferences(final List<Integer> datensatzIds, final List<OptimisationJobPersistent> jobs) throws IOException, JsonParseException, JsonMappingException {
+   private void removeAllJobReferences(final Set<Integer> datensatzIds, final List<OptimisationJobPersistent> jobs) throws IOException, JsonParseException, JsonMappingException {
       for (final OptimisationJobPersistent job : jobs) {
          removeAllFromParameter(datensatzIds, job.getJsonParameter(), "Job " + job.getId(), true);
          if (job.getJsonResult() != null) {
@@ -156,7 +166,7 @@ public class Cleaner implements Runnable {
       }
    }
 
-   private void deleteNonUsed(final ClosableEntityManager em, final List<Integer> datensatzIds) {
+   private void deleteNonUsed(final ClosableEntityManager em, final Set<Integer> datensatzIds) {
       final EntityTransaction et = em.getTransaction();
       et.begin();
       datensatzIds.forEach(id -> {
