@@ -102,6 +102,11 @@
 			<version>${log4j.version}</version>
 		</dependency>
 		<dependency>
+ 			<groupId>org.openjdk.nashorn</groupId>
+			<artifactId>nashorn-core</artifactId>
+			<version>15.4</version>
+		</dependency>
+		<dependency>
 			<groupId>net.javacrumbs.json-unit</groupId>
 			<artifactId>json-unit</artifactId>
 			<version>${json-unit.version}</version>
