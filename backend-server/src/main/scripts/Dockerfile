@@ -3,7 +3,7 @@ FROM localhost:5000/gams:24.7.1
 # Debugging-Werkzeuge installieren
 RUN apt-get -qq update && apt install -qqy software-properties-common gnupg2 apt-utils
 ENV DEBIAN_FRONTEND="noninteractive"
-RUN add-apt-repository "deb http://http.us.debian.org/debian bullseye non-free contrib main"
+#RUN add-apt-repository "deb http://http.us.debian.org/debian bullseye non-free contrib main"
 RUN apt clean
 RUN apt-get -qq update && apt-get -qqy install wget vim graphviz gnuplot && apt-get -y autoremove
 
