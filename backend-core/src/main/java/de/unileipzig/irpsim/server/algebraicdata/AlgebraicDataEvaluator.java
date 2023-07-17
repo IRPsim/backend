@@ -9,7 +9,6 @@ import de.unileipzig.irpsim.core.standingdata.DataLoader;
 import de.unileipzig.irpsim.core.standingdata.StammdatenUtil;
 import de.unileipzig.irpsim.core.standingdata.StaticDataUtil;
 import de.unileipzig.irpsim.core.standingdata.data.*;
-import jdk.nashorn.api.scripting.ScriptObjectMirror;
 import org.apache.commons.lang3.time.StopWatch;
 import org.apache.commons.pool2.impl.GenericObjectPool;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
@@ -22,6 +21,7 @@ import org.apache.logging.log4j.core.config.LoggerConfig;
 import org.hibernate.Session;
 import org.joda.time.DateTime;
 import org.json.JSONObject;
+import org.openjdk.nashorn.api.scripting.ScriptObjectMirror;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;

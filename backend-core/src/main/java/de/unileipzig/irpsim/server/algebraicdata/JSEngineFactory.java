@@ -14,9 +14,9 @@ import org.apache.commons.pool2.PooledObject;
 import org.apache.commons.pool2.impl.DefaultPooledObject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openjdk.nashorn.api.scripting.NashornScriptEngineFactory;
 
 import de.unileipzig.irpsim.core.standingdata.DataLoader;
-import jdk.nashorn.api.scripting.NashornScriptEngineFactory;
 
 public class JSEngineFactory extends BasePooledObjectFactory<Invocable> {
 	static final Logger LOG = LogManager.getLogger(JSEngineFactory.class);
