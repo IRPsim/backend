@@ -14,6 +14,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import com.github.pjfanning.xlsx.StreamingReader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -26,7 +27,6 @@ import org.json.JSONException;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.monitorjbl.xlsx.StreamingReader;
 
 import de.unileipzig.irpsim.core.Constants;
 import de.unileipzig.irpsim.core.data.timeseries.Timeseries;
