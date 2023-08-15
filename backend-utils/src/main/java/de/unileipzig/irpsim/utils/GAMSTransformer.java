@@ -136,6 +136,10 @@ public class GAMSTransformer {
       if (GAMSParserCaller.checkGAMS(source)) {
          final String outputDependenciesName = "../backend-core/src/main/resources/gams-dependencies-" + modelId + ".json";
          GAMSParserCaller.createBackendDependencies(source, outputDependenciesName);
+
+         File modelDefinitionFolder = new File(Constants.SERVER_MODULE_PATH + "src/main/resources/modeldefinitions/");
+         modelDefinitionFolder.mkdirs();
+
          GAMSParserCaller.createFrontendData(source, Constants.SERVER_MODULE_PATH + "src/main/resources/modeldefinitions/" + modelId + ".json");
          ParameterBaseDependenciesUtil.getInstance().loadDependencies(new File(outputDependenciesName), modelId);
          LOG.info("Verarbeite: {}", modelId);
