@@ -59,10 +59,15 @@ public final class ParameterBaseDependenciesUtil {
     * Liest die Abhängigen Sets bzw. Elemente aller Parameter aus und speichert sie intern in den outputDependencies.
     */
    public ModelData loadDependencies(int modeldefinition) {
+      final InputStream is = getModelStream(modeldefinition);
+      return loadDependencies(is, modeldefinition);
+   }
+
+   public InputStream getModelStream(int modeldefinition) {
       final String fileName = "/gams-dependencies-" + modeldefinition + ".json";
       LOG.debug("Lese: {}", fileName);
       final InputStream is = ParameterBaseDependenciesUtil.class.getResourceAsStream(fileName);
-      return loadDependencies(is, modeldefinition);
+      return is;
    }
 
    private ModelData loadDependencies(final InputStream is, int modeldefinition) {
