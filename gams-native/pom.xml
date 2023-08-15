@@ -19,9 +19,4 @@
 
 	<properties>
 	</properties>
-
-	<reporting>
-		<plugins>
-		</plugins>
-	</reporting>
 </project>
