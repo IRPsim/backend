@@ -38,7 +38,10 @@ public final class UseAlternateDependencies extends ExternalResource {
 
 	@Override
 	protected void after() {
-		ParameterBaseDependenciesUtil.getInstance().loadDependencies(1);
+	   if (ParameterBaseDependenciesUtil.getInstance().getModelStream(1) != null) {
+	      ParameterBaseDependenciesUtil.getInstance().loadDependencies(1);
+	   }
+		
 		// ParameterDependenciesUtil.getInstance().setOutputDependencies(oldDependencies);
 		// ParameterDependenciesUtil.getInstance().setAlternativeDependencyFile(oldAlternativeFile);
 	}

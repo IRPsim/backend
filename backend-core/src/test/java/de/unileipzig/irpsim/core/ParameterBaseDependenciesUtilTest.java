@@ -5,10 +5,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import de.unileipzig.irpsim.core.utils.ParameterBaseDependenciesUtil;
 import de.unileipzig.irpsim.core.utils.ParameterInputDependenciesUtil;
 import de.unileipzig.irpsim.core.utils.ParameterOutputDependenciesUtil;
+
+import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.Assert;
+import org.junit.Assume;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -40,7 +44,7 @@ public final class ParameterBaseDependenciesUtilTest {
 	@Test
 	public void testInputParams() {
 		final Set<String> jsonInputs = ParameterInputDependenciesUtil.getInstance().getJSONInputs(UseAlternateDependencies.ALTERNATIVE_DEPENDENCIES_ID);
-		Assert.assertThat(jsonInputs, Matchers.containsInAnyOrder("par_A_DES_PV", "par_E_SS_PHS_respos_schedule", "par_F_DES_E_DSESdirect", "par_C_pss_relativeStatus"));
+		MatcherAssert.assertThat(jsonInputs, Matchers.containsInAnyOrder("par_A_DES_PV", "par_E_SS_PHS_respos_schedule", "par_F_DES_E_DSESdirect", "par_C_pss_relativeStatus"));
 	}
 
 	/**
@@ -49,7 +53,7 @@ public final class ParameterBaseDependenciesUtilTest {
 	@Test
 	public void testInputSetName() {
 		final List<String> inputSetName = ParameterInputDependenciesUtil.getInstance().getInputSetNames("par_E_SS_PHS_respos_schedule", UseAlternateDependencies.ALTERNATIVE_DEPENDENCIES_ID);
-		Assert.assertThat(inputSetName, Matchers.contains("set_tech_SS_PHS"));
+		MatcherAssert.assertThat(inputSetName, Matchers.contains("set_tech_SS_PHS"));
 	}
 
 	/**
@@ -58,7 +62,7 @@ public final class ParameterBaseDependenciesUtilTest {
 	@Test
 	public void testInputSetNames() {
 		final List<String> inputSetNames = ParameterInputDependenciesUtil.getInstance().getInputSetNames("par_C_pss_relativeStatus", UseAlternateDependencies.ALTERNATIVE_DEPENDENCIES_ID);
-		Assert.assertThat(inputSetNames, Matchers.containsInAnyOrder("set_pss", "set_tech_DES_ES"));
+		MatcherAssert.assertThat(inputSetNames, Matchers.containsInAnyOrder("set_pss", "set_tech_DES_ES"));
 	}
 
 	/**
@@ -67,7 +71,7 @@ public final class ParameterBaseDependenciesUtilTest {
 	@Test
 	public void testInputTableNames() {
 		final List<String> inputTableNames = ParameterInputDependenciesUtil.getInstance().getInputTableNames("par_F_DES_E_DSESdirect", UseAlternateDependencies.ALTERNATIVE_DEPENDENCIES_ID);
-		Assert.assertThat(inputTableNames, Matchers.containsInAnyOrder("set_ii", "set_side_cust", "set_tech_DES_ES"));
+		MatcherAssert.assertThat(inputTableNames, Matchers.containsInAnyOrder("set_ii", "set_side_cust", "set_tech_DES_ES"));
 	}
 
 	/**
@@ -76,7 +80,7 @@ public final class ParameterBaseDependenciesUtilTest {
 	@Test
 	public void testOutputParameters() {
 		final List<String> allOutputParameters = ParameterOutputDependenciesUtil.getInstance().getAllOutputParameters(UseAlternateDependencies.ALTERNATIVE_DEPENDENCIES_ID);
-		Assert.assertThat(allOutputParameters, Matchers.hasItems("par_out_C_MS_E", "par_E_out_DES_load_self", "par_out_E_DES_EB_resneg"));
+		MatcherAssert.assertThat(allOutputParameters, Matchers.hasItems("par_out_C_MS_E", "par_E_out_DES_load_self", "par_out_E_DES_EB_resneg"));
 	}
 
 	/**
@@ -85,13 +89,15 @@ public final class ParameterBaseDependenciesUtilTest {
 	@Test
 	public void testOutputDependencies() {
 		final Map<String, List<String>> allOutputDependencies = ParameterOutputDependenciesUtil.getInstance().getAllOutputDependencies(UseAlternateDependencies.ALTERNATIVE_DEPENDENCIES_ID);
-		Assert.assertThat(allOutputDependencies.get("par_out_C_MS_E"), Matchers.contains("set_ii"));
-		Assert.assertThat(allOutputDependencies.get("par_E_out_DES_load_self"), Matchers.containsInAnyOrder("set_ii", "set_p_DS"));
-		Assert.assertThat(allOutputDependencies.get("par_out_E_DES_EB_resneg"), Matchers.containsInAnyOrder("set_ii", "set_p_DS", "set_r"));
+		MatcherAssert.assertThat(allOutputDependencies.get("par_out_C_MS_E"), Matchers.contains("set_ii"));
+		MatcherAssert.assertThat(allOutputDependencies.get("par_E_out_DES_load_self"), Matchers.containsInAnyOrder("set_ii", "set_p_DS"));
+		MatcherAssert.assertThat(allOutputDependencies.get("par_out_E_DES_EB_resneg"), Matchers.containsInAnyOrder("set_ii", "set_p_DS", "set_r"));
 	}
 	
 	@Test
    public void testAllInputDependencies() {
+	   Assume.assumeTrue(ParameterBaseDependenciesUtil.getInstance().getModelStream(1) != null);
+	   
       Assert.assertNotNull(ParameterInputDependenciesUtil.getInstance().getAllInputDependencies(1));
    }
 }
