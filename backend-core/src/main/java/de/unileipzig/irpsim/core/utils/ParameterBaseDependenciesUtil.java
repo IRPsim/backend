@@ -11,6 +11,8 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
+import javax.management.RuntimeErrorException;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.JSONArray;
@@ -67,6 +69,9 @@ public final class ParameterBaseDependenciesUtil {
       final String fileName = "/gams-dependencies-" + modeldefinition + ".json";
       LOG.debug("Lese: {}", fileName);
       final InputStream is = ParameterBaseDependenciesUtil.class.getResourceAsStream(fileName);
+      if (is == null) {
+         throw new RuntimeException("Could not read " + fileName);
+      }
       return is;
    }
 
