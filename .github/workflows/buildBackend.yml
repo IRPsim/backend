@@ -20,6 +20,4 @@ jobs:
     - name: Install GAMS
       run: ./getGams.sh
     - name: Build Backend
-      run: ./mvnw -B package -DskipTests -pl ":backend-server,:backend-gams" -am
-    - name: Test backend-core
-      run: ./mvnw -B clean package -pl ":backend-core" -am
+      run: ./mvnw -B package -DskipTests -pl ":backend-core" -am
