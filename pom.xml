@@ -16,7 +16,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<skipUnitTests>${skipTests}</skipUnitTests>
    		<log4j.version>2.20.0</log4j.version>
-   		<jackson.version>2.14.2</jackson.version>
+   		<jackson.version>2.21.0</jackson.version>
    		<json-unit.version>2.36.1</json-unit.version>
 	</properties>
 
