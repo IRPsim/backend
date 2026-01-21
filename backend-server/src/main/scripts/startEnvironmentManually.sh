@@ -16,7 +16,7 @@ echo "Database created: $container"
 
 export IRPSIM_MYSQL_USER=root
 export IRPSIM_MYSQL_PASSWORD=1rps1m
-export IRPSIM_MYSQL_URL=jdbc:mysql://localhost:5030/irpsim
+export IRPSIM_MYSQL_URL=jdbc:mariadb://localhost:5030/irpsim
 export IRPSIM_PORT=8282
 export IRPSIM_PERSISTENCEFOLDER=irpsim_persistence
 export IRPSIM_MYSQL_JAVAPATH=$(pwd)/../import
